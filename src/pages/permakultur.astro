@@ -1,0 +1,102 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+import Grundsaetze from '../components/grafik/Grundsaetze.astro';
+import Schichten from '../components/grafik/Schichten.astro';
+
+const prinzipien = [
+  ['Beobachten und handeln', 'Erst schauen, wie Wasser, Wind und Sonne über eine Fläche gehen. Dann eingreifen.'],
+  ['Energie einfangen und speichern', 'Regenwasser im Boden halten, Sonnenlicht in Biomasse verwandeln, Humus aufbauen.'],
+  ['Einen Ertrag erzielen', 'Ein System soll auch Nahrung, Holz oder Wissen liefern. Sonst trägt es sich nicht.'],
+  ['Selbst regulieren und Rückmeldung annehmen', 'Fehler ernst nehmen und den Plan anpassen.'],
+  ['Erneuerbares nutzen und schätzen', 'Lieber Laub, Holzhäcksel und Tiere als Diesel und Kunstdünger.'],
+  ['Keinen Abfall erzeugen', 'Was übrig bleibt, wird Mulch, Kompost oder Lebensraum.'],
+  ['Vom Muster zum Detail gestalten', 'Erst die großen Linien von Gelände und Wasser, dann die einzelne Pflanze.'],
+  ['Verbinden statt trennen', 'Pflanzen, Tiere und Menschen so zusammenstellen, dass sie sich gegenseitig nützen.'],
+  ['Klein und langsam anfangen', 'Lösungen, die man selbst pflegen und verstehen kann.'],
+  ['Vielfalt nutzen und schätzen', 'Viele Arten verteilen das Risiko bei Trockenheit, Frost oder Schädlingen.'],
+  ['Ränder nutzen', 'Am Waldrand und am Ufer ist am meisten los. Diese Übergänge gestalten wir bewusst.'],
+  ['Auf Veränderung kreativ reagieren', 'Das Klima ändert sich. Ein Garten muss mitwachsen können.'],
+];
+---
+<Basis titel="Was ist Permakultur?" beschreibung="Permakultur einfach erklärt: drei Grundsätze, zwölf Prinzipien und was ein Waldgarten anders macht als ein Acker. Mit ehrlichem Blick auf das, was man weiß und was nicht.">
+  <Seitenkopf dachzeile="Grundlagen" titel="Was ist Permakultur?" unter="Eine Art, Landschaft zu gestalten, die sich an natürlichen Ökosystemen orientiert. Keine Wundermethode, aber ein gutes Werkzeug zum Nachdenken." />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="lese">
+      <p>Das Wort kommt von „permanent agriculture“, dauerhafte Landwirtschaft. Geprägt haben es Bill Mollison und David Holmgren in den 1970er Jahren in Australien. Ihre Frage war einfach: Wie können wir Nahrung erzeugen, ohne den Boden, das Wasser und die Artenvielfalt aufzubrauchen, von denen wir leben?</p>
+      <p>Permakultur ist dabei keine feste Anbauregel, sondern eine Planungsweise. Man schaut, wie ein Ort funktioniert, und stellt Pflanzen, Tiere, Gebäude und Menschen so zusammen, dass sie sich gegenseitig stützen.</p>
+
+      <h2>Drei Grundsätze</h2>
+      <p>Am Anfang stehen drei ethische Leitlinien. Sie sind der Maßstab, an dem sich jede Planung messen lassen muss.</p>
+    </div>
+    <Grundsaetze />
+    <div class="raster drei-g">
+      <div class="kasten"><h3>Erde pflegen</h3><p>Boden, Wasser und Lebewesen sollen nach unserer Arbeit in besserem Zustand sein als vorher.</p></div>
+      <div class="kasten"><h3>Menschen achten</h3><p>Die Menschen, die das Land bewirtschaften, sollen davon gut leben können, körperlich wie sozial.</p></div>
+      <div class="kasten"><h3>Gerecht teilen</h3><p>Überschüsse teilen, Grenzen des Verbrauchs anerkennen und zurückgeben, was wir nehmen.</p></div>
+    </div>
+
+    <div class="lese">
+      <h2>Zwölf Prinzipien</h2>
+      <p>David Holmgren hat 2002 zwölf Gestaltungsprinzipien beschrieben. Wir geben sie hier in eigenen Worten wieder, so wie wir sie auf unseren Flächen verstehen.</p>
+    </div>
+    <ol class="prinzipien">
+      {prinzipien.map(([titel, text]) => (
+        <li><b>{titel}</b><span>{text}</span></li>
+      ))}
+    </ol>
+
+    <div class="lese">
+      <h2>Der Waldgarten</h2>
+      <p>Ein Waldgarten, oft auch Food Forest genannt, ist eine Pflanzung, die wie ein lichter junger Wald aufgebaut ist. Nur dass fast alles darin essbar oder anderweitig nützlich ist. Statt einer Kultur auf einer Fläche wachsen viele Arten in mehreren Stockwerken übereinander.</p>
+    </div>
+    <Schichten />
+    <div class="lese">
+      <p>Pflanzen, die sich gut ergänzen, setzen wir in sogenannten <b>Gilden</b> zusammen: zum Beispiel einen Obstbaum mit Sträuchern darunter, mit Pflanzen, die Stickstoff aus der Luft binden, und mit tief wurzelnden Stauden, deren Laub als Mulch liegen bleibt. Welche Kombinationen auf Brandenburger Sand wirklich funktionieren, ist eine der Fragen, die wir auf unseren Flächen beobachten.</p>
+
+      <h2>Was ist anders als auf dem Acker?</h2>
+      <p>Auf einem klassischen Acker wird jedes Jahr neu gepflügt, gesät, gedüngt und geerntet. Der Boden liegt oft wochenlang offen. In einem Waldgarten stehen die meisten Pflanzen über viele Jahre. Der Boden bleibt bedeckt, Laub und Schnittgut werden zu Humus, Wurzeln lockern den Boden.</p>
+      <p>Das hat Vorteile und Nachteile, und wir wollen beide nennen:</p>
+      <div class="raster zwei">
+        <div class="kasten kasten--sand">
+          <h3>Was dafür spricht</h3>
+          <ul>
+            <li>Dauerhafte Bedeckung schützt den Boden vor Austrocknung und Wind.</li>
+            <li>Gehölze speichern Kohlenstoff in Holz und Boden.</li>
+            <li>Viele Strukturen bieten Lebensraum für Insekten, Vögel und Bodenleben.</li>
+            <li>Nach der Anlage ist die jährliche Arbeit vor allem Pflege und Ernte.</li>
+          </ul>
+        </div>
+        <div class="kasten">
+          <h3>Was man wissen sollte</h3>
+          <ul>
+            <li>Viele Bäume tragen erst nach Jahren. Die ersten Jahre kosten Arbeit und Geld.</li>
+            <li>Ernte aus vielen Arten ist aufwendiger als von einer einzigen Kultur.</li>
+            <li>Belastbare Ertragszahlen für Waldgärten in Mitteleuropa gibt es bisher wenige.</li>
+            <li>Auf trockenem Sand müssen junge Pflanzen oft gewässert werden, bis sie eingewachsen sind.</li>
+          </ul>
+        </div>
+      </div>
+      <p>Genau deshalb heißen wir „Erforschung zukunftsfähiger Landnutzungsformen“. Wir wollen nicht behaupten, dass Waldgärten die Landwirtschaft ersetzen. Wir wollen herausfinden, was sie in unserer Region leisten können, und das gemeinsam mit Hochschulen sauber dokumentieren.</p>
+    </div>
+
+    <Weiter links={[{ href: '/flaechen/', text: 'So sieht das bei uns aus' }, { href: '/wirtschaft/', text: 'Lohnt sich das?' }]} />
+  </div></div>
+</Basis>
+
+<style>
+  .drei-g { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .drei-g .kasten { margin: 0; }
+  .drei-g h3 { margin-top: 0; }
+  .zwei { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); margin: 20px 0; }
+  .zwei .kasten { margin: 0; }
+  .zwei ul { padding-left: 20px; margin: 0; }
+  .zwei li { margin-bottom: 6px; }
+  .prinzipien { list-style: none; counter-reset: p; padding: 0; margin: 20px 0 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+  .prinzipien li { counter-increment: p; position: relative; background: #fff; border: 1.5px solid var(--linie); border-radius: 14px; padding: 14px 16px 14px 58px; display: flex; flex-direction: column; gap: 2px; }
+  .prinzipien li::before { content: counter(p); position: absolute; left: 14px; top: 14px; width: 32px; height: 32px; border-radius: 50%; background: var(--wald); color: #fff; display: grid; place-items: center; font: 800 15px var(--kopf); }
+  .prinzipien b { font: 700 16px var(--kopf); color: var(--wald); }
+  .prinzipien span { font-size: 15px; color: var(--grau); }
+</style>

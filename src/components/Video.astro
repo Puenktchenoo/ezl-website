@@ -1,0 +1,45 @@
+---
+import { verein } from '../data/verein';
+const id = verein.videoId;
+---
+<div class="video" data-id={id ?? ''}>
+  <img src="/kronen.svg" alt="" width="1200" height="420" />
+  {id ? (
+    <button type="button" class="play">
+      <i aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="#1F4430" /></svg></i>
+      Was ist der EzL? Video ansehen
+    </button>
+  ) : (
+    <span class="play play--bald">
+      <i aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="#1F4430" /></svg></i>
+      Unser Video kommt bald
+    </span>
+  )}
+  <small>Das Video wird erst beim Antippen von YouTube geladen. Vorher fließen keine Daten dorthin.</small>
+</div>
+<script>
+  document.querySelectorAll<HTMLElement>('.video[data-id]').forEach((box) => {
+    const id = box.dataset.id;
+    const knopf = box.querySelector('button.play');
+    if (!id || !knopf) return;
+    knopf.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+      f.title = 'Video: Was ist der EzL?';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.allowFullscreen = true;
+      box.replaceChildren(f);
+    });
+  });
+</script>
+<style>
+  .video { position: relative; border-radius: var(--rund); overflow: hidden; aspect-ratio: 16 / 9; background: var(--wald); display: grid; place-items: center; color: #fff; margin: 8px 0 36px; }
+  .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .45; }
+  .video :global(iframe) { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+  .play { position: relative; display: flex; align-items: center; gap: 14px; font: 700 18px var(--kopf); color: #fff; background: none; border: 0; padding: 12px; cursor: pointer; text-align: left; }
+  .play--bald { cursor: default; opacity: .9; }
+  .play i { width: 64px; height: 64px; flex: none; border-radius: 50%; background: #fff; display: grid; place-items: center; }
+  button.play:hover i { transform: scale(1.06); }
+  .video small { position: absolute; bottom: 12px; left: 16px; right: 16px; font: 400 13px var(--text); opacity: .85; }
+  @media (max-width: 520px) { .video { aspect-ratio: 4 / 3; } .play { font-size: 16px; } }
+</style>

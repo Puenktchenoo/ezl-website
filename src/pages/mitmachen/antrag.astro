@@ -1,0 +1,94 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/literata';
+import { verein } from '../../data/verein';
+const k = verein.konto;
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Beitrittserklärung | EzL</title>
+  <meta name="description" content="Beitrittserklärung des EzL zum Ausdrucken." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+</head>
+<body>
+  <div class="leiste">
+    <a href="/mitmachen/#antrag">Zurück</a>
+    <button type="button" onclick="window.print()">Drucken oder als PDF speichern</button>
+  </div>
+  <article class="blatt">
+    <header>
+      <div>
+        <h1>Beitrittserklärung</h1>
+        <p class="verein">{verein.name} ({verein.kurz})<br />{verein.rechtsform}, Sitz {verein.sitz}</p>
+      </div>
+      <p class="kontakt">Kontakt: {verein.vorsitz}<br />{verein.email}{verein.anschrift && verein.anschrift.map((z) => <><br />{z}</>)}</p>
+    </header>
+
+    <p>Ich möchte die Ziele des Vereins Erforschung zukunftsfähiger Landnutzungsformen unterstützen.</p>
+    <div class="felder">
+      <span>Name, Vorname</span><span>Straße, Hausnummer</span>
+      <span>Postleitzahl, Ort</span><span>E-Mail</span>
+    </div>
+
+    <h2>Mitgliedschaft <small>(bei ausschließlicher Spende leer lassen)</small></h2>
+    <p>Hiermit erkläre ich meinen Beitritt zum Verein Erforschung zukunftsfähiger Landnutzungsformen zum <span class="linie kurz"></span> (Datum). Die aktuelle Version der Satzung ist mir bekannt und wird von mir durch meine Unterschrift einschließlich aller Rechte und Pflichten anerkannt.</p>
+    <p class="kreuze"><span>☐ Einzelmitgliedschaft (aktiv)</span><span>☐ Fördermitgliedschaft</span></p>
+    <p>Ich möchte den Verein gern finanziell unterstützen, und zwar mit:</p>
+    <p class="kreuze"><span>monatlich <span class="linie mini"></span> €</span><span>vierteljährlich <span class="linie mini"></span> €</span><span>jährlich <span class="linie mini"></span> €</span></p>
+
+    <h2>Spende</h2>
+    <p>Ich möchte den Verein ausschließlich mit einer Spende unterstützen, und zwar mit:</p>
+    <p class="kreuze"><span>einmalig <span class="linie mini"></span> €</span><span>monatlich <span class="linie mini"></span> €</span><span>vierteljährlich <span class="linie mini"></span> €</span><span>jährlich <span class="linie mini"></span> €</span></p>
+    <p>Mit einer Nennung meines Namens, Unternehmens oder Vereins auf der Website bin ich <span class="kreuze inline"><span>☐ einverstanden</span><span>☐ nicht einverstanden</span></span></p>
+
+    <h2>Zahlungsweise</h2>
+    <p>☐ <b>Per Lastschrift:</b> Hiermit ermächtige ich den EzL bis auf Widerruf, den fälligen Beitrag oder die Spende von meinem unten genannten Konto einzuziehen.</p>
+    <p>☐ <b>Per Überweisung</b> auf das Vereinskonto{verein.kontoZeigen ? <>: IBAN {k.iban}, BIC {k.bic}, {k.bank}, Kontoinhaber {k.inhaber}</> : <>. Die Bankverbindung schicken wir dir nach Eingang der Erklärung.</>}</p>
+    <div class="felder">
+      <span>Kontoinhaber (falls abweichend)</span><span>IBAN</span>
+      <span>BIC</span><span></span>
+      <span>Ort, Datum</span><span>Unterschrift</span>
+    </div>
+
+    <p class="schluss">Bitte ausgefüllt und unterschrieben {verein.anschrift ? 'per Post oder ' : ''}eingescannt per Mail an {verein.email} schicken. Danke und willkommen beim EzL!</p>
+    {verein.gemeinnuetzigAnerkannt === true && (
+      <p class="klein">Spenden an den EzL sind steuerlich absetzbar. Für Spenden bis 300 Euro reicht dem Finanzamt der Kontoauszug als Beleg. Für eine Zuwendungsbestätigung bitte Anschrift und E-Mail angeben. Wir verschicken sie jeweils im Folgejahr.</p>
+    )}
+  </article>
+</body>
+</html>
+
+<style is:global>
+  body { margin: 0; background: #E9E4D4; font: 15px/1.5 'Literata Variable', Georgia, serif; color: #1C211D; }
+  .leiste { display: flex; justify-content: space-between; align-items: center; max-width: 210mm; margin: 0 auto; padding: 14px 16px; }
+  .leiste a { font: 600 15px 'Archivo Variable', sans-serif; color: #1F4430; }
+  .leiste button { font: 700 15px 'Archivo Variable', sans-serif; background: #1F4430; color: #fff; border: 0; border-radius: 999px; padding: 10px 18px; cursor: pointer; }
+  .blatt { background: #fff; max-width: 210mm; margin: 0 auto 40px; padding: 16mm 16mm; box-sizing: border-box; }
+  .blatt header { display: flex; justify-content: space-between; gap: 20px; border-bottom: 2px solid #1F4430; padding-bottom: 10px; margin-bottom: 14px; }
+  .blatt h1 { font: 800 26px 'Archivo Variable', sans-serif; color: #1F4430; margin: 0 0 4px; }
+  .blatt h2 { font: 800 16px 'Archivo Variable', sans-serif; color: #1F4430; margin: 18px 0 6px; text-transform: uppercase; letter-spacing: .06em; }
+  .blatt h2 small { text-transform: none; letter-spacing: 0; font-weight: 500; color: #5D665F; }
+  .blatt p { margin: 6px 0; }
+  .verein { margin: 0; color: #5D665F; }
+  .kontakt { text-align: right; margin: 0; font-size: 13px; }
+  .felder { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 24px; margin: 14px 0 8px; }
+  .felder span { border-top: 1px solid #1C211D; padding-top: 2px; font-size: 12px; color: #5D665F; margin-top: 18px; }
+  .felder span:empty { border-color: transparent; }
+  .kreuze { display: flex; flex-wrap: wrap; gap: 8px 28px; }
+  .kreuze.inline { display: inline-flex; gap: 16px; }
+  .linie { display: inline-block; border-bottom: 1px solid #1C211D; vertical-align: bottom; }
+  .linie.kurz { width: 120px; } .linie.mini { width: 60px; }
+  .schluss { margin-top: 20px; font-weight: 600; }
+  .klein { font-size: 12px; color: #5D665F; }
+  @media print {
+    @page { size: A4; margin: 0; }
+    body { background: #fff; }
+    .leiste { display: none; }
+    .blatt { margin: 0; max-width: none; }
+  }
+  @media (max-width: 600px) { .blatt { padding: 20px 16px; } .blatt header { flex-direction: column; } .kontakt { text-align: left; } }
+</style>

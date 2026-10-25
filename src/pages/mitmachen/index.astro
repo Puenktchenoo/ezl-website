@@ -1,0 +1,151 @@
+---
+import Basis from '../../layouts/Basis.astro';
+import Seitenkopf from '../../components/Seitenkopf.astro';
+import { verein } from '../../data/verein';
+
+const wege = [
+  { titel: 'Mitpflanzen', text: 'Bei Pflanzaktionen, beim Mulchen oder Wässern auf unseren Flächen in Britz. Keine Vorkenntnisse nötig.', link: '/kontakt/', linktext: 'Nächsten Termin erfragen' },
+  { titel: 'Mitlernen', text: 'Gemeinsames Studium, Wildgärtnern, Obstbaumschnitt und Kräuterwanderungen. Unsere Treffen sind offen für Interessierte.', link: '/kontakt/', linktext: 'Schreib uns' },
+  { titel: 'Mitforschen', text: 'Du studierst und suchst ein Thema für eine Projektarbeit oder Abschlussarbeit? Unsere Flächen bieten viele Fragen.', link: '/kontakt/', linktext: 'Thema anfragen' },
+  { titel: 'Spenden', text: 'Geld, Werkzeug, Pflanzen oder Holzhäcksel. Alles hilft, die jungen Waldgärten durch die ersten Jahre zu bringen.', link: '/spenden/', linktext: 'Zu den Spenden' },
+];
+---
+<Basis titel="Mitmachen" beschreibung="Beim EzL mitmachen: mitpflanzen, mitlernen, mitforschen, spenden oder Mitglied werden. Mit Beitrittserklärung zum Ausfüllen.">
+  <Seitenkopf dachzeile="Mitmachen" titel="Pflanz mit uns." unter="Du musst kein Mitglied sein, um mit anzupacken. Aber wenn du dabei bleiben willst, freuen wir uns sehr." />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="raster wege">
+      {wege.map((w) => (
+        <div class="kasten">
+          <h2>{w.titel}</h2>
+          <p>{w.text}</p>
+          <a href={w.link}>{w.linktext}</a>
+        </div>
+      ))}
+    </div>
+
+    <section id="mitglied" class="lese">
+      <h2>Mitglied werden</h2>
+      <p>Im EzL gibt es zwei Arten der Mitgliedschaft:</p>
+      <div class="raster arten">
+        <div class="kasten kasten--sand">
+          <h3>Aktive Mitgliedschaft</h3>
+          <p>Für alle, die im Verein mitarbeiten wollen. Nach einem Jahr Probezeit hast du Stimmrecht in der Mitgliederversammlung.</p>
+        </div>
+        <div class="kasten kasten--sand">
+          <h3>Fördermitgliedschaft</h3>
+          <p>Für alle, die den Verein finanziell, mit Material oder ideell unterstützen möchten, ohne selbst regelmäßig mitzuarbeiten.</p>
+        </div>
+      </div>
+      <p>Über die Aufnahme entscheidet der Vorstand. Die Höhe deines Beitrags legst du in der Beitrittserklärung selbst fest. Mit dem Beitritt erkennst du unsere Satzung an. Wenn du sie vorher lesen möchtest, <a href={`mailto:${verein.email}?subject=${encodeURIComponent('Satzung EzL')}`}>schicken wir sie dir gern</a>.</p>
+    </section>
+
+    <section id="antrag" class="antrag">
+      <div class="lese">
+        <h2>Beitrittserklärung</h2>
+        <p>Du hast zwei Möglichkeiten:</p>
+        <ol>
+          <li><b>Online vorbereiten:</b> Füll das Formular aus. Dein Mailprogramm öffnet sich mit dem fertigen Text, den du prüfen und an uns schicken kannst. Auf dieser Seite wird nichts gespeichert.</li>
+          <li><b>Ausdrucken:</b> Die <a href="/mitmachen/antrag/">Beitrittserklärung zum Drucken</a> ausfüllen, unterschreiben und per Post oder eingescannt per Mail schicken. Für eine Zahlung per Lastschrift brauchen wir diese unterschriebene Fassung.</li>
+        </ol>
+      </div>
+
+      <form class="kasten formular" id="antragform" data-mail={verein.email}>
+        <fieldset>
+          <legend>Was möchtest du?</legend>
+          <label class="wahl"><input type="radio" name="art" value="Einzelmitgliedschaft (aktiv)" checked /> Aktives Mitglied werden</label>
+          <label class="wahl"><input type="radio" name="art" value="Fördermitgliedschaft" /> Fördermitglied werden</label>
+          <label class="wahl"><input type="radio" name="art" value="Nur Spende, keine Mitgliedschaft" /> Nur spenden, ohne Mitgliedschaft</label>
+        </fieldset>
+
+        <div class="reihe">
+          <label>Name, Vorname <input name="name" autocomplete="name" required /></label>
+          <label>E-Mail <input name="email" type="email" autocomplete="email" required /></label>
+        </div>
+        <div class="reihe">
+          <label>Straße und Hausnummer <input name="strasse" autocomplete="street-address" required /></label>
+          <label>PLZ und Ort <input name="ort" autocomplete="address-level2" required /></label>
+        </div>
+        <label class="kurz">Beitritt zum <input name="datum" type="date" /></label>
+
+        <fieldset>
+          <legend>Finanzielle Unterstützung (freiwillig)</legend>
+          <div class="reihe">
+            <label>Betrag in Euro <input name="betrag" inputmode="decimal" placeholder="zum Beispiel 5" /></label>
+            <label>Rhythmus
+              <select name="rhythmus"><option>monatlich</option><option>vierteljährlich</option><option>jährlich</option><option>einmalig</option></select>
+            </label>
+          </div>
+          <label>Zahlungsweise
+            <select name="zahlung">
+              <option value="Überweisung auf das Vereinskonto">Überweisung</option>
+              <option value="Lastschrift (unterschriebene Beitrittserklärung folgt)">Lastschrift (dafür bitte zusätzlich das unterschriebene Formular schicken)</option>
+            </select>
+          </label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Nennung auf der Website</legend>
+          <label class="wahl"><input type="radio" name="nennung" value="einverstanden" /> Mein Name darf als Unterstützer genannt werden</label>
+          <label class="wahl"><input type="radio" name="nennung" value="nicht einverstanden" checked /> Bitte nicht nennen</label>
+        </fieldset>
+
+        <label class="wahl"><input type="checkbox" name="satzung" required /> Ich kenne die aktuelle Satzung des Vereins und erkenne sie mit meinem Beitritt an. Bei reiner Spende entfällt das.</label>
+
+        <button class="knopf knopf--dunkel" type="submit">Mail vorbereiten</button>
+      </form>
+    </section>
+  </div></div>
+</Basis>
+
+<script>
+  const f = document.getElementById('antragform') as HTMLFormElement | null;
+  const satzung = f?.querySelector<HTMLInputElement>('input[name="satzung"]');
+  f?.querySelectorAll<HTMLInputElement>('input[name="art"]').forEach((r) =>
+    r.addEventListener('change', () => { if (satzung) satzung.required = !r.value.startsWith('Nur'); })
+  );
+  f?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(f);
+    const g = (k: string) => String(d.get(k) ?? '').trim();
+    const nurSpende = g('art').startsWith('Nur');
+    const zeilen = [
+      'Hallo EzL,', '',
+      nurSpende
+        ? 'ich möchte den Verein Erforschung zukunftsfähiger Landnutzungsformen mit einer Spende unterstützen.'
+        : `hiermit erkläre ich meinen Beitritt zum Verein Erforschung zukunftsfähiger Landnutzungsformen${g('datum') ? ' zum ' + new Date(g('datum')).toLocaleDateString('de-DE') : ''}.`,
+      '', `Art: ${g('art')}`, `Name: ${g('name')}`, `Anschrift: ${g('strasse')}, ${g('ort')}`, `E-Mail: ${g('email')}`,
+      g('betrag') ? `Unterstützung: ${g('betrag')} Euro ${g('rhythmus')}` : 'Unterstützung: keine Angabe',
+      `Zahlungsweise: ${g('zahlung')}`, `Nennung auf der Website: ${g('nennung')}`,
+    ];
+    if (!nurSpende) zeilen.push('', 'Die aktuelle Satzung ist mir bekannt und ich erkenne sie mit allen Rechten und Pflichten an.');
+    zeilen.push('', 'Viele Grüße', g('name'));
+    const betreff = nurSpende ? 'Spende an den EzL' : 'Beitrittserklärung EzL';
+    window.location.href = `mailto:${f.dataset.mail}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(zeilen.join('\n'))}`;
+  });
+</script>
+
+<style>
+  .wege { margin-top: 8px; }
+  .wege .kasten { margin: 0; display: flex; flex-direction: column; gap: 6px; }
+  .wege h2 { margin: 0; font-size: 22px; }
+  .wege p { margin: 0; flex: 1; font-size: 16px; }
+  .wege a { font: 700 15px var(--kopf); }
+  .arten { margin: 14px 0; }
+  .arten .kasten { margin: 0; }
+  .arten h3 { margin-top: 0; }
+  .arten p { margin: 0; font-size: 16px; }
+  .antrag .kasten { max-width: 760px; }
+  .formular { display: flex; flex-direction: column; gap: 14px; }
+  .formular label { display: flex; flex-direction: column; gap: 6px; font: 600 15px var(--kopf); color: var(--wald); }
+  .formular input:not([type=radio]):not([type=checkbox]), .formular select { font: 400 16px var(--text); padding: 10px 12px; border: 1.5px solid var(--linie); border-radius: 10px; background: var(--papier); color: var(--tinte); width: 100%; }
+  .formular input:focus, .formular select:focus { border-color: var(--blatt); outline: none; box-shadow: 0 0 0 3px rgba(61, 127, 82, .2); }
+  .formular .wahl { flex-direction: row; align-items: flex-start; gap: 10px; font: 400 16px var(--text); color: var(--tinte); }
+  .formular .wahl input { margin-top: 5px; accent-color: var(--wald); width: 18px; height: 18px; flex: none; }
+  .formular .kurz { max-width: 260px; }
+  .formular fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .formular legend { font: 800 17px var(--kopf); color: var(--wald); margin-bottom: 8px; padding: 0; }
+  .formular button { align-self: flex-start; }
+  .reihe { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .reihe { grid-template-columns: 1fr; } }
+</style>

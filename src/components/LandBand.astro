@@ -1,0 +1,23 @@
+---
+---
+<section class="land" aria-labelledby="land-titel">
+  <div class="wrap">
+    <div>
+      <h2 id="land-titel">Du hast Land und weißt nicht, wohin damit?</h2>
+      <p>Wir suchen Acker, Wald und Wiesen, die wieder lebendig werden wollen. Ob pachten, gemeinsam bewirtschaften oder einfach erst mal reden: Schreib uns, wir melden uns.</p>
+    </div>
+    <div class="knoepfe">
+      <a class="knopf knopf--hell" href="/kontakt/#land">Fläche anbieten</a>
+      <a class="knopf knopf--rand" href="/mitmachen/">Mitglied werden</a>
+      <a class="knopf knopf--rand" href="/spenden/">Spenden</a>
+    </div>
+  </div>
+</section>
+<style>
+  .land { background: var(--wald); color: #fff; padding: 48px 0; }
+  .land .wrap { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .land h2 { margin: 0 0 10px; color: #fff; font-size: clamp(26px, 4vw, 36px); }
+  .land p { margin: 0; opacity: .92; max-width: 48ch; }
+  .knoepfe { display: flex; flex-direction: column; gap: 10px; }
+  @media (max-width: 760px) { .land .wrap { grid-template-columns: 1fr; } }
+</style>

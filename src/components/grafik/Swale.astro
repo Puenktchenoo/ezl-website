@@ -1,0 +1,42 @@
+---
+// Eigene Zeichnung: Querschnitt eines Swales am Hang.
+---
+<figure class="grafik">
+  <svg viewBox="0 0 720 300" role="img" aria-labelledby="sw-t">
+    <title id="sw-t">Querschnitt eines Swales: Regen läuft den Hang hinab, sammelt sich in einer Mulde entlang der Höhenlinie und versickert. Auf dem Wall darunter stehen Bäume.</title>
+    <path d="M0 110 L250 170 Q290 215 330 182 Q360 150 400 175 L720 250 L720 300 L0 300 Z" fill="#D9CDB0" />
+    <path d="M0 110 L250 170 Q290 215 330 182 Q360 150 400 175 L720 250" fill="none" stroke="#8A5F2E" stroke-width="3" />
+    <!-- Wasser in der Mulde -->
+    <path d="M262 182 Q290 205 318 186 Z" fill="#7FA9C9" />
+    <!-- Versickerung -->
+    <g stroke="#7FA9C9" stroke-width="3" stroke-dasharray="4 7" stroke-linecap="round" fill="none">
+      <path d="M275 205 q-6 30 4 60" /><path d="M292 210 q4 34 -4 64" /><path d="M310 204 q10 30 30 52" />
+    </g>
+    <!-- Regen -->
+    <g stroke="#7FA9C9" stroke-width="3" stroke-linecap="round">
+      <path d="M60 20 l-8 22" /><path d="M120 30 l-8 22" /><path d="M180 26 l-8 22" /><path d="M240 34 l-8 22" />
+    </g>
+    <!-- Abfluss Pfeil -->
+    <path d="M70 130 L210 162" stroke="#1F4430" stroke-width="2.5" marker-end="url(#pfeil)" fill="none" />
+    <defs><marker id="pfeil" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#1F4430" /></marker></defs>
+    <!-- Baum auf dem Wall -->
+    <rect x="356" y="110" width="9" height="50" fill="#8A5F2E" />
+    <circle cx="360" cy="96" r="32" fill="#3D7F52" />
+    <rect x="450" y="150" width="8" height="45" fill="#8A5F2E" />
+    <circle cx="454" cy="138" r="24" fill="#5E9E6B" />
+    <path d="M200 232 Q245 228 268 200" fill="none" stroke="#1F4430" stroke-width="1.5" />
+    <g class="l">
+      <text x="40" y="90">Regen läuft ab</text>
+      <text x="40" y="236">Mulde hält Wasser</text>
+      <text x="40" y="256" class="k">und lässt es versickern</text>
+      <text x="400" y="60">Wall mit Bäumen</text>
+      <text x="560" y="210" class="k">Hang abwärts</text>
+    </g>
+  </svg>
+  <figcaption>Ein Swale ist eine flache Mulde entlang der Höhenlinie. Eigene, schematische Darstellung.</figcaption>
+</figure>
+<style>
+  .grafik svg { width: 100%; display: block; }
+  .l text { font: 700 15px var(--kopf); fill: #1F4430; }
+  .l .k { font: 400 14px var(--text); fill: #5D665F; }
+</style>

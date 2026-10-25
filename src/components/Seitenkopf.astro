@@ -1,0 +1,11 @@
+---
+interface Props { dachzeile?: string; titel: string; unter?: string }
+const { dachzeile, titel, unter } = Astro.props;
+---
+<header class="seitenkopf">
+  <div class="wrap">
+    {dachzeile && <span class="dachzeile">{dachzeile}</span>}
+    <h1>{titel}</h1>
+    {unter && <p class="unter">{unter}</p>}
+  </div>
+</header>

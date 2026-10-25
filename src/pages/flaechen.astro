@@ -1,0 +1,131 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+import LandBand from '../components/LandBand.astro';
+import Swale from '../components/grafik/Swale.astro';
+import { Image } from 'astro:assets';
+import waldLuft from '../assets/plaene/wald-luftbild.png';
+import waldSchema from '../assets/plaene/wald-schema.png';
+import acker1 from '../assets/plaene/acker-1.png';
+import acker2 from '../assets/plaene/acker-2.png';
+import acker3 from '../assets/plaene/acker-3.png';
+import holz from '../assets/holz1.jpg';
+---
+<Basis titel="Unsere Flächen" beschreibung="Acker und Wald in Britz: 1.700 m² Acker werden zum Waldgarten, 1,5 ha Kiefernforst sollen ein essbarer Dauerwald werden. Mit Pflanzplänen, Swales und lehmigem Sand.">
+  <Seitenkopf dachzeile="Britz bei Eberswalde" titel="Unsere Flächen" unter="Ein Acker und ein Stück Wald, beide auf trockenem, lehmigem Sand. Hier probieren wir aus, was wir in Büchern und Kursen gelernt haben." />
+
+  <div class="inhalt"><div class="wrap">
+    <nav class="sprung" aria-label="Auf dieser Seite">
+      <a href="#acker">Acker</a><a href="#wald">Wald</a><a href="#boden">Boden und Wasser</a><a href="#forschung">Was wir beobachten</a>
+    </nav>
+
+    <section id="acker" class="block">
+      <div class="lese">
+        <span class="dachzeile">Fläche 1</span>
+        <h2>Der Acker: 1.700 m² werden Waldgarten</h2>
+        <p>Am Rand von Britz liegt unsere erste eigene Fläche, ein schmaler Streifen Acker zwischen Feld und Wiese. Hier entsteht ein Waldgarten mit Obst, Nüssen und Beeren, eingefasst von Hecken, die Wind abhalten und Vögeln Schutz geben.</p>
+        <p>Geplant sind unter anderem Persimone, Feige, Mandel, Aprikose, Pfirsich, Quitte, Birne, Apfel, Felsenbirne, Schwarze Maulbeere und Papiermaulbeere. Einige davon sind für Brandenburg mutig gewählt. Gerade das wollen wir wissen: Was hält Frost und Trockenheit hier aus, wenn Boden und Nachbarpflanzen stimmen?</p>
+        <p>Die Bäume stehen in geschwungenen Reihen. Diese Bögen folgen den Swales, flachen Gräben entlang der Höhenlinie, die Regenwasser auf der Fläche halten. Dazu weiter unten mehr.</p>
+      </div>
+
+      <div class="plaene">
+        <figure>
+          <Image src={acker1} alt="Luftbild des Ackers mit eingezeichneten Baumkronen, erster Entwurf" widths={[574]} />
+          <figcaption>Entwurf 1: erste Verteilung der Bäume</figcaption>
+        </figure>
+        <figure>
+          <Image src={acker2} alt="Luftbild des Ackers mit Baumkronen entlang geschwungener Linien, zweiter Entwurf" widths={[574]} />
+          <figcaption>Entwurf 2: Bäume folgen den Swales</figcaption>
+        </figure>
+        <figure>
+          <Image src={acker3} alt="Luftbild des Ackers mit dichter Bepflanzung und Hecken an den Rändern, dritter Entwurf" widths={[558]} />
+          <figcaption>Entwurf 3: dichter, mit Hecken an drei Seiten</figcaption>
+        </figure>
+      </div>
+      <p class="hinweis-klein">Pläne: Sebastian Weber. Es sind Arbeitsstände, die sich mit der Pflanzung noch ändern.</p>
+    </section>
+
+    <section id="wald" class="block">
+      <div class="zweispaltig">
+        <div class="lese">
+          <span class="dachzeile">Fläche 2</span>
+          <h2>Der Wald: 1,5 ha Kiefernforst</h2>
+          <p>In Britz Kolonie bewirtschaften wir ein Stück Wald, wie es in Brandenburg typisch ist: vor allem Kiefern, dicht gepflanzt, wenig Unterwuchs. Solche Bestände leiden unter Trockenheit und sind anfällig für Feuer und Schädlinge.</p>
+          <p>Unser Ziel ist ein essbarer Dauerwald. Dafür haben wir eine Lichtung geschaffen. Die Schnittreste bleiben als Mulch und für den Bodenaufbau auf der Fläche. Aus Ästen entstehen Totholzhaufen und Benjeshecken, also locker aufgeschichtete Hecken aus Reisig, in denen Vögel, Igel und Insekten Unterschlupf finden.</p>
+          <p>In die Lichtung pflanzen wir große, langlebige Nussbäume und seltene Wildobstarten: Esskastanie, Pekannuss, Herznuss, Armandskiefer und Nusskiefer, Elsbeere, Speierling, Baumhasel, Weiße Maulbeere und Amerikanischen Zürgelbaum. Am Rand folgen Sträucher und Beeren.</p>
+        </div>
+        <figure class="holz">
+          <Image src={holz} alt="Querschnitt eines frisch gefällten Kiefernstamms mit deutlichen Jahresringen" widths={[400, 700]} sizes="(max-width: 760px) 90vw, 360px" />
+          <figcaption>Kiefernholz aus der Lichtung</figcaption>
+        </figure>
+      </div>
+
+      <div class="plaene plaene--zwei">
+        <figure>
+          <Image src={waldLuft} alt="Luftbild des Waldstücks mit eingezeichneter Lichtung und Baumkronen" widths={[576]} />
+          <figcaption>Die Lichtung im Luftbild</figcaption>
+        </figure>
+        <figure>
+          <Image src={waldSchema} alt="Schema der Pflanzung in der Lichtung mit Esskastanie, Pekannuss, Herznuss, Kiefern, Elsbeere, Speierling und weiteren Arten" widths={[468]} />
+          <figcaption>Pflanzschema mit Kronendurchmessern</figcaption>
+        </figure>
+      </div>
+      <p class="hinweis-klein">Pläne: Sebastian Weber.</p>
+    </section>
+
+    <section id="boden" class="block">
+      <div class="lese">
+        <span class="dachzeile">Standort</span>
+        <h2>Lehmiger Sand und wenig Regen</h2>
+        <p>Der Nordosten Brandenburgs gehört zu den trockeneren Regionen Deutschlands. In vielen Jahren fallen hier nur um die 500 bis 600 Millimeter Regen, und in den Sommern der letzten Jahre war es oft deutlich weniger. Unser Boden ist lehmiger Sand: Er lässt sich gut bearbeiten, hält Wasser aber nur kurz.</p>
+        <p>Deshalb ist Wasser unser wichtigstes Thema. Drei Dinge helfen uns dabei:</p>
+        <ul>
+          <li><b>Swales:</b> flache Gräben entlang der Höhenlinie, die Regen auffangen und langsam in den Boden sickern lassen.</li>
+          <li><b>Mulch:</b> Holzhäcksel, Laub und Schnittgut bedecken den Boden und bremsen die Verdunstung.</li>
+          <li><b>Humus:</b> Jedes Prozent mehr organische Substanz hilft dem Boden, mehr Wasser zu speichern. Das geht langsam, über Jahre.</li>
+        </ul>
+      </div>
+      <Swale />
+    </section>
+
+    <section id="forschung" class="block">
+      <div class="lese">
+        <span class="dachzeile">Begleitung</span>
+        <h2>Was wir beobachten</h2>
+        <p>Studierende und Lehrende der Hochschule Neubrandenburg, der HNE Eberswalde und der HTW Berlin begleiten unsere Flächen. Es geht um Fragen wie diese:</p>
+        <ul>
+          <li>Wie verändern sich Humus und Bodenleben unter Mulch und Gehölzen?</li>
+          <li>Welche Arten wachsen auf trockenem Sand gut an, welche nicht?</li>
+          <li>Welche Pflanzengemeinschaften stützen sich gegenseitig?</li>
+          <li>Welche Tiere und Pflanzen siedeln sich neu an?</li>
+        </ul>
+        <p>Ergebnisse veröffentlichen wir hier, sobald es belastbare gibt. Auch Fehlschläge gehören dazu.</p>
+      </div>
+    </section>
+
+    <Weiter links={[{ href: '/muttergarten/', text: 'Woher die Pflanzen kommen' }, { href: '/vision/', text: 'Wohin das führen soll' }]} />
+  </div></div>
+  <LandBand />
+</Basis>
+
+<style>
+  .sprung { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sprung a { font: 600 14px var(--kopf); text-decoration: none; padding: 6px 12px; border-radius: 999px; background: var(--sand); }
+  .sprung a:hover { background: var(--linie); }
+  .block { padding-top: 16px; }
+  .block h2 { margin-top: 6px; }
+  .plaene { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 20px; }
+  .plaene--zwei { grid-template-columns: 1.25fr 1fr; }
+  .plaene figure { margin: 0; }
+  .plaene img { border: 1.5px solid var(--linie); }
+  .hinweis-klein { font-size: 14px; color: var(--grau); margin: 10px 0 0; }
+  .zweispaltig { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+  .holz { margin-top: 60px; }
+  .holz img { aspect-ratio: 3 / 4; object-fit: cover; }
+  @media (max-width: 760px) {
+    .plaene, .plaene--zwei, .zweispaltig { grid-template-columns: 1fr; }
+    .holz { margin-top: 0; }
+    .holz img { aspect-ratio: 4 / 3; }
+  }
+</style>

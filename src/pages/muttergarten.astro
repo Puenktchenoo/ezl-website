@@ -1,0 +1,70 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+
+const kapitel = [
+  {
+    titel: 'Zwei Menschen und ein Bücherstapel',
+    text: [
+      'Am Anfang war kein Land, sondern Lesestoff. Zwei Menschen in der Schorfheide haben sich durch die wichtigsten Bücher zur Permakultur gearbeitet, Listen geschrieben und gestritten, welche Pflanzen auf Brandenburger Sand eine Chance haben.',
+      'Daraus entstanden die ersten vereinseigenen Pflanzlisten und kleine Schriften: über die Auswahl von Obstgehölzen, über mehrjähriges Gemüse, über Förderpflanzen und essbare Wildpflanzen.',
+    ],
+  },
+  {
+    titel: 'Ein Garten, der Kinder bekommt',
+    text: [
+      'Wer Waldgärten pflanzen will, braucht sehr viele Pflanzen. Kaufen kann man die meisten davon nicht in der Menge und nicht in der Vielfalt, die wir brauchen. Also haben wir angefangen, sie selbst zu ziehen.',
+      'So entstand am Üdersee in der Schorfheide der Muttergarten: ein Garten, dessen wichtigste Ernte Nachwuchs ist. Hier stehen Mutterpflanzen, von denen wir Samen, Stecklinge und Ableger nehmen. Daneben wächst eine kleine Baumschule.',
+    ],
+  },
+  {
+    titel: 'Luft an die Wurzeln',
+    text: [
+      'In der Baumschule probieren wir schonende Methoden der Vermehrung aus. Ein Schwerpunkt ist das sogenannte Air Pruning: Die jungen Bäume wachsen in Gefäßen, an deren Wänden Luft an die Wurzelspitzen kommt. Die Wurzeln drehen sich dann nicht im Kreis, sondern verzweigen sich fein. Solche Bäume wachsen nach dem Auspflanzen oft besser an. Wie gut das bei unseren Arten klappt, beobachten wir noch.',
+    ],
+  },
+  {
+    titel: 'Samen aus der Landschaft',
+    text: [
+      'Vieles finden wir draußen. Wir sammeln Wildsaatgut und Stecklinge von alten Obstbäumen, Hecken und Wildgehölzen in der Brandenburger Kulturlandschaft. Was daraus wächst, ist an das Klima hier oft schon gut angepasst.',
+      'Beim Wildgärtnern pflegen wir alte Obstbäume und Nussbäume an Wegen und Ausgleichsflächen, schneiden sie nach naturgemäßen Methoden wie dem Oeschbergschnitt und pflanzen junge Gehölze dazu. Und auf Kräuterwanderungen lernen wir gemeinsam, essbare Wildpflanzen und Pilze zu erkennen.',
+    ],
+  },
+  {
+    titel: 'Die Bäume von morgen',
+    text: [
+      'Viele der Pflanzen, die heute auf dem Acker und im Wald in Britz stehen, haben ihre ersten Jahre im Muttergarten verbracht. Und jedes Jahr kommen neue dazu. Der Muttergarten ist damit das Herz des Vereins: Hier fängt alles an, was später auf größeren Flächen wachsen soll.',
+    ],
+  },
+];
+---
+<Basis titel="Der Muttergarten" beschreibung="Wie der EzL angefangen hat: mit Büchern, einem Muttergarten am Üdersee in der Schorfheide und einer kleinen Baumschule, in der die Bäume von morgen heranwachsen.">
+  <Seitenkopf dachzeile="Wo alles angefangen hat" titel="Der Muttergarten" unter="Eine kleine Geschichte darüber, wie aus Büchern Bäume werden." />
+
+  <div class="inhalt"><div class="wrap">
+    <ol class="geschichte">
+      {kapitel.map((k) => (
+        <li>
+          <h2>{k.titel}</h2>
+          {k.text.map((t) => <p>{t}</p>)}
+        </li>
+      ))}
+    </ol>
+
+    <div class="kasten kasten--hinweis lese">
+      <p>Der Muttergarten liegt auf privatem Grund und ist nicht öffentlich zugänglich. Wer ihn kennenlernen möchte, kommt am besten zu einem unserer Treffen. <a href="/kontakt/">Schreib uns</a>, dann sagen wir dir, wann das nächste ist.</p>
+    </div>
+
+    <Weiter links={[{ href: '/flaechen/', text: 'Wohin die Pflanzen gehen' }, { href: '/mitmachen/', text: 'Mitmachen' }]} />
+  </div></div>
+</Basis>
+
+<style>
+  .geschichte { list-style: none; padding: 0; margin: 40px 0 0; max-width: var(--lese); counter-reset: k; }
+  .geschichte li { counter-increment: k; position: relative; padding: 0 0 28px 56px; border-left: 2px solid var(--linie); margin-left: 18px; }
+  .geschichte li:last-child { border-left-color: transparent; }
+  .geschichte li::before { content: counter(k); position: absolute; left: -19px; top: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--wald); color: #fff; display: grid; place-items: center; font: 800 16px var(--kopf); }
+  .geschichte h2 { margin: 4px 0 10px; font-size: 24px; }
+  .geschichte p { margin: 0 0 12px; }
+</style>

@@ -1,0 +1,56 @@
+---
+// Eigene Zeichnung: die Schichten eines Waldgartens im Querschnitt.
+const schichten = [
+  { text: 'Hohe Bäume', bsp: 'Esskastanie, Walnuss' },
+  { text: 'Kletterpflanzen', bsp: 'Wein, Kiwibeere' },
+  { text: 'Niedrige Bäume', bsp: 'Apfel, Quitte, Maulbeere' },
+  { text: 'Sträucher', bsp: 'Haselnuss, Felsenbirne' },
+  { text: 'Kräuter und Stauden', bsp: 'Beinwell, Minze' },
+  { text: 'Bodendecker', bsp: 'Walderdbeere' },
+  { text: 'Wurzeln und Knollen', bsp: 'Topinambur' },
+].map((s, i) => ({ ...s, y: 34 + i * 50 }));
+---
+<figure class="grafik">
+  <svg viewBox="0 0 720 380" role="img" aria-labelledby="sc-t">
+    <title id="sc-t">Querschnitt eines Waldgartens mit sieben Schichten von hohen Bäumen bis zu Wurzeln im Boden.</title>
+    <rect x="0" y="312" width="720" height="68" fill="#D9CDB0" />
+    <path d="M0 312 Q120 304 240 312 T480 312 T720 312" fill="none" stroke="#8A5F2E" stroke-width="2" />
+    <!-- hoher Baum -->
+    <rect x="104" y="120" width="14" height="194" fill="#8A5F2E" />
+    <circle cx="111" cy="90" r="70" fill="#1F4430" />
+    <circle cx="70" cy="110" r="40" fill="#1F4430" />
+    <circle cx="150" cy="112" r="42" fill="#1F4430" />
+    <!-- niedriger Baum -->
+    <rect x="234" y="190" width="10" height="124" fill="#8A5F2E" />
+    <circle cx="239" cy="168" r="44" fill="#3D7F52" />
+    <circle cx="232" cy="160" r="5" fill="#B8864B" /><circle cx="252" cy="178" r="5" fill="#B8864B" /><circle cx="222" cy="182" r="5" fill="#B8864B" />
+    <!-- Kletterpflanze am Baum -->
+    <path d="M116 312 C130 280 96 260 116 230 C134 204 98 186 116 160" fill="none" stroke="#6FA36F" stroke-width="4" stroke-linecap="round" />
+    <circle cx="124" cy="270" r="5" fill="#6FA36F" /><circle cx="104" cy="214" r="5" fill="#6FA36F" />
+    <!-- Strauch -->
+    <ellipse cx="330" cy="282" rx="40" ry="34" fill="#5E9E6B" />
+    <!-- Kräuter -->
+    <path d="M385 312 l6 -40 l6 40 M398 312 l10 -34 l4 34 M372 312 l4 -30 l8 30" fill="#7FB07A" />
+    <!-- Bodendecker -->
+    <ellipse cx="440" cy="310" rx="34" ry="8" fill="#9CC48F" />
+    <!-- Wurzeln, Knolle -->
+    <path d="M111 314 l-30 40 M111 314 l0 52 M111 314 l34 38" stroke="#8A5F2E" stroke-width="3" fill="none" />
+    <ellipse cx="400" cy="340" rx="12" ry="9" fill="#B8864B" />
+    <path d="M400 312 v20" stroke="#7FB07A" stroke-width="3" />
+    <g class="leg">
+      {schichten.map((s) => (
+        <g>
+          <line x1="470" x2="500" y1={s.y} y2={s.y} stroke="#B8864B" stroke-width="2" />
+          <text x="508" y={s.y + 1} class="n">{s.text}</text>
+          <text x="508" y={s.y + 18} class="b">{s.bsp}</text>
+        </g>
+      ))}
+    </g>
+  </svg>
+  <figcaption>Die Schichten eines Waldgartens mit Beispielen, eigene Darstellung.</figcaption>
+</figure>
+<style>
+  .grafik svg { width: 100%; display: block; }
+  .leg .n { font: 700 15px var(--kopf); fill: #1F4430; }
+  .leg .b { font: 400 13px var(--text); fill: #5D665F; }
+</style>

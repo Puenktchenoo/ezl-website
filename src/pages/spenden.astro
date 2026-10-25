@@ -1,0 +1,84 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+import { verein } from '../data/verein';
+
+const zwecke = [
+  { titel: 'Pflanzen', text: 'Jungbäume, Edelreiser und Saatgut für Acker, Wald und Baumschule.' },
+  { titel: 'Wasser', text: 'Tanks, Schläuche und Tropfbewässerung, damit junge Pflanzen die ersten Sommer überstehen.' },
+  { titel: 'Schutz', text: 'Verbissschutz und Zäune gegen Wild, solange die Bäume klein sind.' },
+  { titel: 'Werkzeug', text: 'Spaten, Sägen, Scheren und alles, was bei Pflanzaktionen gebraucht wird.' },
+  { titel: 'Wissen', text: 'Bodenproben, Kurse und Material für die Bildungsarbeit.' },
+  { titel: 'Land', text: 'Pacht und langfristig eigene Flächen für neue Waldgärten.' },
+];
+const k = verein.konto;
+const betreff = encodeURIComponent('Spende an den EzL');
+---
+<Basis titel="Spenden" beschreibung="Unterstütze den EzL mit einer Spende. Wofür wir Geld und Sachspenden brauchen und wie du spenden kannst.">
+  <Seitenkopf dachzeile="Unterstützen" titel="Spenden" unter="Jeder Baum, den wir pflanzen, soll Jahrzehnte stehen. Mit deiner Spende hilfst du ihm über die ersten Jahre." />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="lese">
+      <h2>Wofür wir Geld brauchen</h2>
+      <p>Wir sind ein kleiner Verein ohne feste Förderung. Alles, was wir anlegen, finanzieren wir aus Beiträgen, Spenden und viel ehrenamtlicher Arbeit. Spenden fließen direkt in die Flächen und die Bildungsarbeit.</p>
+    </div>
+    <div class="raster zwecke">
+      {zwecke.map((z) => <div class="kasten"><h3>{z.titel}</h3><p>{z.text}</p></div>)}
+    </div>
+
+    <div class="lese">
+      <h2>So kannst du spenden</h2>
+      {verein.kontoZeigen ? (
+        <div class="kasten konto">
+          <p><b>Überweisung auf unser Vereinskonto</b></p>
+          <dl>
+            <dt>Bank</dt><dd>{k.bank}</dd>
+            <dt>Kontoinhaber</dt><dd>{k.inhaber} für EzL</dd>
+            <dt>IBAN</dt><dd><code>{k.iban}</code></dd>
+            <dt>BIC</dt><dd><code>{k.bic}</code></dd>
+            <dt>Verwendungszweck</dt><dd>Spende EzL</dd>
+          </dl>
+        </div>
+      ) : (
+        <div class="kasten">
+          <p>Schreib uns eine kurze Mail, dann schicken wir dir unsere Bankverbindung. Wenn du regelmäßig spenden möchtest, geht das auch über unsere <a href="/mitmachen/#antrag">Beitrittserklärung</a> als Fördermitglied oder reine Spende.</p>
+          <p><a class="knopf knopf--dunkel" href={`mailto:${verein.email}?subject=${betreff}`}>Mail schreiben</a></p>
+        </div>
+      )}
+
+      <h3>Spendenquittung</h3>
+      {verein.gemeinnuetzigAnerkannt === true && (
+        <p>Der EzL ist als gemeinnützig anerkannt. Deine Spende ist steuerlich absetzbar. Für Spenden bis 300 Euro reicht dem Finanzamt der Kontoauszug als Beleg. Wenn du eine Zuwendungsbestätigung brauchst, schick uns bitte deine Anschrift. Wir verschicken die Bestätigungen jeweils im Folgejahr.</p>
+      )}
+      {verein.gemeinnuetzigAnerkannt === false && (
+        <p>Wir können derzeit keine Zuwendungsbestätigungen ausstellen. Spenden sind deshalb nicht steuerlich absetzbar.</p>
+      )}
+      {verein.gemeinnuetzigAnerkannt === null && (
+        <p>Unsere Satzung verfolgt gemeinnützige Zwecke. Ob wir für deine Spende eine steuerlich wirksame Zuwendungsbestätigung ausstellen können, klären wir gerade. Frag uns gern vorher, wenn dir das wichtig ist.</p>
+      )}
+
+      <h2>Sachspenden und Zeit</h2>
+      <p>Manchmal hilft uns etwas anderes sogar mehr als Geld:</p>
+      <ul>
+        <li>Werkzeug, das bei dir nur noch herumsteht</li>
+        <li>Jungpflanzen, Stecklinge oder Saatgut aus deinem Garten</li>
+        <li>Holzhäcksel, Laub oder Pferdemist in größeren Mengen</li>
+        <li>Ein paar Stunden bei einer Pflanzaktion</li>
+      </ul>
+      <p>Wenn du dir unsicher bist, ob wir etwas brauchen können: <a href="/kontakt/">frag einfach</a>.</p>
+    </div>
+
+    <Weiter links={[{ href: '/mitmachen/', text: 'Fördermitglied werden' }, { href: '/flaechen/', text: 'Was mit dem Geld wächst' }]} />
+  </div></div>
+</Basis>
+
+<style>
+  .zwecke { margin-top: 18px; }
+  .zwecke .kasten { margin: 0; }
+  .zwecke h3 { margin-top: 0; }
+  .zwecke p { margin: 0; font-size: 16px; }
+  .konto dl { display: grid; grid-template-columns: max-content 1fr; gap: 6px 18px; margin: 0; }
+  .konto dt { font: 600 15px var(--kopf); color: var(--grau); }
+  .konto dd { margin: 0; }
+</style>

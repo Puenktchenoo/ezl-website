@@ -1,0 +1,27 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import { verein } from '../data/verein';
+---
+<Basis titel="Datenschutz" beschreibung="Datenschutzerklärung des EzL. Keine Cookies, kein Tracking, Video erst nach Klick.">
+  <Seitenkopf titel="Datenschutz" unter="Kurz gesagt: keine Cookies, kein Tracking, keine Analysewerkzeuge. Schriften liegen auf unserem eigenen Server." />
+  <div class="inhalt"><div class="wrap lese">
+    <h2>Verantwortlich</h2>
+    <p>{verein.name} ({verein.kurz}), vertreten durch {verein.vorsitz}. Die Anschrift steht im <a href="/impressum/">Impressum</a>. E-Mail: <a href={`mailto:${verein.email}`}>{verein.email}</a></p>
+
+    <h2>Hosting</h2>
+    <p>Diese Seite wird über Cloudflare ausgeliefert (Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, USA). Beim Aufruf verarbeitet Cloudflare technisch notwendige Daten wie deine IP-Adresse, Datum und Uhrzeit, die aufgerufene Seite und Angaben zu deinem Browser, um die Seite auszuliefern und vor Angriffen zu schützen. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und funktionierenden Angebot (Art. 6 Abs. 1 lit. f DSGVO). Cloudflare ist nach dem EU-US Data Privacy Framework zertifiziert. Wir selbst werten diese Daten nicht aus.</p>
+
+    <h2>Cookies und Tracking</h2>
+    <p>Wir setzen keine Cookies und nutzen keine Analysedienste oder Trackingdienste. Schriftarten werden von unserem eigenen Server geladen, nicht von Google.</p>
+
+    <h2>Kontakt per Mail</h2>
+    <p>Wenn du uns schreibst, verarbeiten wir deine Angaben, um deine Anfrage zu beantworten (Art. 6 Abs. 1 lit. b und f DSGVO). Die Formulare auf dieser Seite speichern nichts und senden nichts an uns. Sie öffnen nur dein eigenes Mailprogramm mit einem vorbereiteten Text. Erst wenn du die Mail selbst abschickst, erhalten wir sie. Wir löschen Anfragen, wenn sie erledigt sind und keine Aufbewahrungspflichten bestehen. Daten von Mitgliedern verwenden wir nur für die Vereinsverwaltung.</p>
+
+    <h2>Video</h2>
+    <p>Auf der Startseite kann ein Video von YouTube eingebunden sein (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland). Es wird erst geladen, wenn du auf das Vorschaubild tippst. Vorher werden keine Daten an YouTube übertragen. Wir nutzen dabei den erweiterten Datenschutzmodus (youtube-nocookie.com). Nach dem Klick gelten die Datenschutzbestimmungen von Google. Rechtsgrundlage ist deine Einwilligung durch den Klick (Art. 6 Abs. 1 lit. a DSGVO).</p>
+
+    <h2>Deine Rechte</h2>
+    <p>Du hast das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit und Widerspruch. Schreib uns dazu einfach eine Mail. Außerdem kannst du dich bei einer Aufsichtsbehörde beschweren, in Brandenburg bei der Landesbeauftragten für den Datenschutz und für das Recht auf Akteneinsicht.</p>
+  </div></div>
+</Basis>

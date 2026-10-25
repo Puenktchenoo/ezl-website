@@ -1,0 +1,102 @@
+:root {
+  --wald: #1F4430;
+  --blatt: #3D7F52;
+  --sand: #E9E4D4;
+  --lehm: #B8864B;
+  --lehm-dunkel: #8A5F2E;
+  --tinte: #1C211D;
+  --grau: #5D665F;
+  --papier: #FBFAF6;
+  --linie: #E2DED0;
+  --kopf: 'Archivo Variable', 'Archivo', system-ui, sans-serif;
+  --text: 'Literata Variable', 'Literata', Georgia, serif;
+  --breite: 1040px;
+  --lese: 68ch;
+  --rund: 18px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--tinte);
+  font: 17px/1.6 var(--text);
+  font-optical-sizing: auto;
+}
+img, svg { max-width: 100%; height: auto; }
+a { color: var(--wald); text-underline-offset: 3px; }
+a:hover { color: var(--blatt); }
+:focus-visible { outline: 3px solid var(--lehm); outline-offset: 2px; border-radius: 4px; }
+
+h1, h2, h3, h4 { font-family: var(--kopf); color: var(--wald); line-height: 1.12; letter-spacing: -.005em; }
+h1 { font-weight: 800; font-size: clamp(32px, 6vw, 52px); margin: 0 0 12px; }
+h2 { font-weight: 800; font-size: clamp(24px, 3.4vw, 32px); margin: 48px 0 12px; }
+h3 { font-weight: 700; font-size: 20px; margin: 28px 0 8px; }
+
+.wrap { max-width: var(--breite); margin: 0 auto; padding: 0 20px; }
+.lese { max-width: var(--lese); }
+
+.frage, .dachzeile {
+  display: block;
+  font: 700 13px var(--kopf);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--lehm-dunkel);
+}
+
+.knopf {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; border-radius: 999px;
+  font: 700 16px var(--kopf); text-decoration: none; border: 2px solid transparent;
+  cursor: pointer;
+}
+.knopf--dunkel { background: var(--wald); color: #fff; }
+.knopf--dunkel:hover { background: var(--blatt); color: #fff; }
+.knopf--hell { background: var(--papier); color: var(--wald); }
+.knopf--hell:hover { background: #fff; color: var(--wald); }
+.knopf--rand { color: #fff; border-color: #fff; background: transparent; }
+.knopf--rand:hover { background: rgba(255,255,255,.12); color: #fff; }
+.knopf--rand-dunkel { color: var(--wald); border-color: var(--wald); background: transparent; }
+.knopf--rand-dunkel:hover { background: var(--sand); color: var(--wald); }
+
+/* Seitenkopf der Unterseiten */
+.seitenkopf { background: var(--sand); border-bottom: 1px solid var(--linie); }
+.seitenkopf .wrap { padding-top: 44px; padding-bottom: 40px; }
+.seitenkopf p.unter { font-size: 19px; margin: 0; max-width: 46ch; }
+
+.inhalt { padding-bottom: 64px; }
+.inhalt > .wrap > :first-child { margin-top: 40px; }
+
+.kasten {
+  background: #fff; border: 1.5px solid var(--linie); border-radius: var(--rund);
+  padding: 20px 22px; margin: 24px 0;
+}
+.kasten > :first-child { margin-top: 0; }
+.kasten > :last-child { margin-bottom: 0; }
+.kasten--sand { background: var(--sand); border-color: transparent; }
+.kasten--hinweis { border-left: 5px solid var(--lehm); }
+
+.raster { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr)); gap: 14px; }
+
+figure { margin: 28px 0; }
+figure img { display: block; width: 100%; border-radius: 12px; }
+figcaption { font-size: 14px; color: var(--grau); margin-top: 8px; }
+
+.karten { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 14px; }
+.karte {
+  display: flex; flex-direction: column; gap: 6px; padding: 18px;
+  border-radius: var(--rund); background: #fff; border: 1.5px solid var(--linie);
+  text-decoration: none; color: var(--tinte); transition: border-color .15s, transform .15s;
+}
+.karte:hover { border-color: var(--blatt); color: var(--tinte); transform: translateY(-2px); }
+.karte b { font: 800 19px var(--kopf); color: var(--wald); }
+.karte span { font-size: 15px; color: var(--grau); }
+
+.weiter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 36px; }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
+}

@@ -1,0 +1,131 @@
+---
+import Basis from '../layouts/Basis.astro';
+import LandBand from '../components/LandBand.astro';
+import Video from '../components/Video.astro';
+import { Image } from 'astro:assets';
+import aquarell from '../assets/logo-aquarell.jpg';
+import holz from '../assets/holz1.jpg';
+import { verein } from '../data/verein';
+
+const stellen = [
+  { name: 'Baum', ziel: '/flaechen/', text: 'Unsere Flächen', x: 50, y: 30, w: 46, h: 30 },
+  { name: 'Geweih links', ziel: '/vision/#wildtiere', text: 'Vision: Wildtiere', x: 17, y: 37, w: 20, h: 44 },
+  { name: 'Geweih rechts', ziel: '/vision/#wildtiere', text: 'Vision: Wildtiere', x: 83, y: 37, w: 20, h: 44 },
+  { name: 'Jurte', ziel: '/vision/#sippenlandschaft', text: 'Vision: Sippenlandschaft', x: 50, y: 64, w: 36, h: 20 },
+  { name: 'Schriftzug EzL', ziel: '/ueber-uns/', text: 'Über uns', x: 50, y: 12, w: 24, h: 11 },
+];
+---
+<Basis
+  titel="Start"
+  beschreibung="Der EzL legt essbare Waldgärten auf Acker und im Forst in Brandenburg an. Ein kleiner Verein aus der Schorfheide, der erforscht, wie man vom Land leben kann, ohne es auszubeuten."
+>
+  <section class="hero">
+    <div class="hero__innen">
+      <div class="logo-box">
+        <Image
+          src={aquarell}
+          alt="Logo des EzL: Ein Baum wächst aus einer Jurte, umrahmt von einem Geweih. Darüber der Schriftzug EzL."
+          widths={[320, 480, 640]}
+          sizes="(max-width: 760px) 90vw, 440px"
+          loading="eager"
+          fetchpriority="high"
+        />
+        {stellen.map((s) => (
+          <a
+            class="stelle"
+            href={s.ziel}
+            style={`left:${s.x}%;top:${s.y}%;width:${s.w}%;height:${s.h}%`}
+            aria-label={`${s.name}: ${s.text}`}
+          ><span>{s.text}</span></a>
+        ))}
+      </div>
+      <div class="hero__text">
+        <h1>Wir pflanzen essbare Wälder.</h1>
+        <p class="unter">Auf Acker und im Forst in Brandenburg, auf trockenem Sand. Und wir erforschen, wie sich das tragen kann.</p>
+        <p class="tipp">Tipp auf Baum, Geweih oder Jurte, um mehr zu erfahren.</p>
+        <a class="knopf knopf--dunkel" href="/kontakt/#land">Du hast Land? Sprich uns an</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="drei">
+      <section>
+        <span class="frage">Wer sind wir?</span>
+        <h2>Ein kleiner Verein mit großen Bäumen</h2>
+        <p>Der EzL, „Erforschung zukunftsfähiger Landnutzungsformen“, ist ein Verein aus der Schorfheide, gegründet {verein.gegruendet}. Ein paar Menschen, die zusammen pflanzen, lernen und ausprobieren, wie man vom Land leben kann, ohne es auszubeuten.</p>
+        <a class="mehr" href="/ueber-uns/">Mehr über uns</a>
+      </section>
+      <section>
+        <span class="frage">Was machen wir?</span>
+        <h2>Wir lernen vom jungen Wald</h2>
+        <p>Wir legen Waldgärten an, in denen fast alles essbar ist: vielfältig wie ein junger Wald, gepflanzt in Gilden, mit Swales gegen die Trockenheit. In Britz auf einem Acker und in einem Wald. Viele Pflanzen ziehen wir im Muttergarten selbst heran.</p>
+        <a class="mehr" href="/flaechen/">Zu den Flächen</a>
+      </section>
+      <section>
+        <span class="frage">Wo wollen wir hin?</span>
+        <h2>Eine Sippenlandschaft</h2>
+        <p>Hektarweise Acker und Forst verwandeln. Kleine Gemeinschaften, die davon leben, zusammen wachsen und sich regelmäßig treffen. Und eines Tages wieder mehr Raum für Rehe, Elche und Fasane.</p>
+        <a class="mehr" href="/vision/">Zur Vision</a>
+      </section>
+    </div>
+
+    <dl class="zahlen">
+      <div><dt>1,5 ha</dt><dd>Wald in Britz, soll ein essbarer Dauerwald werden</dd></div>
+      <div><dt>1.700 m²</dt><dd>Acker in Britz, wird zum Waldgarten</dd></div>
+      <div><dt>{verein.gegruendet}</dt><dd>gegründet, heute {verein.mitglieder} Mitglieder</dd></div>
+      <div><dt>3</dt><dd>Hochschulen begleiten unsere Flächen</dd></div>
+    </dl>
+
+    <Video />
+
+    <h2 class="sr">Alle Themen</h2>
+    <div class="karten">
+      <a class="karte" href="/permakultur/"><b>Was ist Permakultur?</b><span>Drei Grundsätze, zwölf Prinzipien und was ein Waldgarten anders macht als ein Acker.</span></a>
+      <a class="karte" href="/flaechen/">
+        <Image src={holz} alt="" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__bild" />
+        <b>Unsere Flächen</b><span>Acker und Wald in Britz, mit Pflanzplänen, Swales und lehmigem Sand.</span>
+      </a>
+      <a class="karte" href="/muttergarten/"><b>Der Muttergarten</b><span>Wo alles angefangen hat und wo die Bäume von morgen heranwachsen.</span></a>
+      <a class="karte" href="/vision/"><b>Unsere Vision</b><span>Sippenlandschaft, Zusammenschaft, Jurten und Wildtiere.</span></a>
+      <a class="karte" href="/wirtschaft/"><b>Lohnt sich das?</b><span>Wie Permakultur wirtschaftlich tragen kann: Nüsse, Obst, Pflanzen, Kurse, Planung.</span></a>
+      <a class="karte" href="/mitmachen/"><b>Mitmachen</b><span>Mitglied werden, spenden, mitpflanzen.</span></a>
+    </div>
+  </div>
+
+  <LandBand />
+</Basis>
+
+<style>
+  .hero { background: #FBFBF9; border-bottom: 1px solid #E7E2D3; }
+  .hero__innen { max-width: var(--breite); margin: 0 auto; padding: 20px 20px 44px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+  .logo-box { position: relative; width: 100%; max-width: 440px; justify-self: center; }
+  .logo-box img { width: 100%; height: auto; display: block; }
+  .stelle { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; display: block; transition: background .2s; }
+  .stelle span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; background: var(--wald); color: #fff; font: 700 13px var(--kopf); padding: 5px 10px; border-radius: 999px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+  .stelle:hover span, .stelle:focus-visible span { opacity: 1; }
+  .stelle:hover { background: rgba(31, 68, 48, .07); }
+  .hero__text h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.04; margin-bottom: 14px; }
+  .unter { margin: 0 0 10px; font-size: 19px; }
+  .tipp { margin: 0 0 18px; font: 600 14px var(--kopf); color: var(--lehm-dunkel); }
+
+  .drei { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; padding: 48px 0 20px; }
+  .drei section { display: flex; flex-direction: column; gap: 8px; }
+  .drei h2 { margin: 0; font-size: 24px; }
+  .drei p { margin: 0; }
+  .mehr { font: 700 15px var(--kopf); margin-top: 4px; }
+
+  .zahlen { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px; margin: 28px 0; background: var(--wald); border-radius: var(--rund); overflow: hidden; }
+  .zahlen div { background: var(--wald); color: #fff; padding: 18px; display: flex; flex-direction: column; }
+  .zahlen dt { font: 800 30px var(--kopf); }
+  .zahlen dd { margin: 0; font-size: 14px; opacity: .88; }
+
+  .karten { padding-bottom: 48px; }
+  .karte__bild { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin-bottom: 6px; }
+
+  @media (max-width: 760px) {
+    .hero__innen { grid-template-columns: 1fr; gap: 10px; padding-top: 6px; }
+    .drei { grid-template-columns: 1fr; gap: 26px; padding-top: 36px; }
+    .zahlen { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

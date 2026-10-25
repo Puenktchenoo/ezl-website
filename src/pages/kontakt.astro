@@ -1,0 +1,102 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import { verein } from '../data/verein';
+---
+<Basis titel="Kontakt" beschreibung="Schreib dem EzL: Fragen, Mitmachen, Kooperationen mit Hochschulen oder eine Fläche, die wieder lebendig werden soll.">
+  <Seitenkopf dachzeile="Schreib uns" titel="Kontakt" unter="Wir sind ein kleiner, ehrenamtlicher Verein. Manchmal dauert eine Antwort ein paar Tage, aber wir melden uns." />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="zwei">
+      <div class="lese">
+        <h2>So erreichst du uns</h2>
+        <p>Am einfachsten per Mail an<br /><a class="mail" href={`mailto:${verein.email}`}>{verein.email}</a></p>
+        <p>Ansprechpartner ist unser Vorsitzender {verein.vorsitz}.</p>
+        <p>Du kannst auch das Formular nutzen. Es speichert nichts auf unserer Seite, sondern öffnet nur dein Mailprogramm mit einer fertigen Nachricht, die du noch prüfen und selbst abschicken kannst.</p>
+      </div>
+
+      <form class="formular kasten" id="kontaktform" data-mail={verein.email}>
+        <label>Worum geht es?
+          <select name="anliegen">
+            <option>Allgemeine Frage</option>
+            <option>Mitmachen</option>
+            <option value="Fläche anbieten">Ich habe Land</option>
+            <option>Hochschule und Forschung</option>
+            <option>Presse</option>
+          </select>
+        </label>
+        <label>Dein Name <input name="name" autocomplete="name" required /></label>
+        <label>Nachricht <textarea name="nachricht" rows="6" required></textarea></label>
+        <button class="knopf knopf--dunkel" type="submit">Mail vorbereiten</button>
+      </form>
+    </div>
+
+    <section id="land" class="land-kasten">
+      <div class="lese">
+        <span class="dachzeile">Du hast Land?</span>
+        <h2>Fläche anbieten</h2>
+        <p>Du hast einen Acker, ein Stück Wald oder eine Wiese, die du nicht selbst bewirtschaften kannst oder willst? Du möchtest, dass dort etwas Lebendiges entsteht? Dann lass uns reden.</p>
+        <p>Wir suchen Flächen in Brandenburg, am liebsten in erreichbarer Nähe zu Eberswalde und der Schorfheide. Pacht, gemeinsame Bewirtschaftung, eine Schenkung oder eine ganz eigene Idee: Alles ist erst mal ein Gespräch wert.</p>
+        <p>Hilfreich für uns sind diese Angaben:</p>
+      </div>
+      <form class="formular kasten" id="landform" data-mail={verein.email}>
+        <div class="reihe">
+          <label>Dein Name <input name="name" autocomplete="name" required /></label>
+          <label>Ort oder Gemarkung <input name="ort" required /></label>
+        </div>
+        <div class="reihe">
+          <label>Ungefähre Größe <input name="groesse" placeholder="zum Beispiel 2 ha" /></label>
+          <label>Art der Fläche
+            <select name="art"><option>Acker</option><option>Wald</option><option>Wiese oder Weide</option><option>Gemischt</option><option>Weiß nicht</option></select>
+          </label>
+        </div>
+        <label>Was stellst du dir vor? <textarea name="nachricht" rows="5" placeholder="Pacht, Zusammenarbeit, Verkauf, einfach mal reden …"></textarea></label>
+        <button class="knopf knopf--dunkel" type="submit">Mail vorbereiten</button>
+      </form>
+    </section>
+  </div></div>
+</Basis>
+
+<script>
+  function mailAus(form: HTMLFormElement, betreff: string, zeilen: string[]) {
+    const an = form.dataset.mail ?? '';
+    const url = `mailto:${an}?subject=${encodeURIComponent(betreff)}&body=${encodeURIComponent(zeilen.join('\n'))}`;
+    window.location.href = url;
+  }
+  const k = document.getElementById('kontaktform') as HTMLFormElement | null;
+  k?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(k);
+    mailAus(k, `${d.get('anliegen')}: Nachricht über die Website`, [
+      String(d.get('nachricht') ?? ''), '', `Viele Grüße`, String(d.get('name') ?? ''),
+    ]);
+  });
+  const l = document.getElementById('landform') as HTMLFormElement | null;
+  l?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const d = new FormData(l);
+    mailAus(l, `Fläche anbieten: ${d.get('ort')}`, [
+      'Hallo EzL,', '', 'ich habe eine Fläche, die vielleicht für euch interessant ist.', '',
+      `Ort: ${d.get('ort')}`, `Größe: ${d.get('groesse') || 'unbekannt'}`, `Art: ${d.get('art')}`, '',
+      String(d.get('nachricht') ?? ''), '', 'Viele Grüße', String(d.get('name') ?? ''),
+    ]);
+  });
+</script>
+
+<style>
+  .zwei { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; margin-top: 8px; }
+  .zwei .kasten { margin-top: 48px; }
+  .mail { font: 700 20px var(--kopf); word-break: break-all; }
+  .formular { display: flex; flex-direction: column; gap: 14px; }
+  .formular label { display: flex; flex-direction: column; gap: 6px; font: 600 15px var(--kopf); color: var(--wald); }
+  .formular input, .formular select, .formular textarea { font: 400 16px var(--text); padding: 10px 12px; border: 1.5px solid var(--linie); border-radius: 10px; background: var(--papier); color: var(--tinte); width: 100%; }
+  .formular input:focus, .formular select:focus, .formular textarea:focus { border-color: var(--blatt); outline: none; box-shadow: 0 0 0 3px rgba(61, 127, 82, .2); }
+  .formular button { align-self: flex-start; }
+  .reihe { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .land-kasten { margin-top: 56px; padding-top: 8px; border-top: 1px solid var(--linie); }
+  .land-kasten .kasten { max-width: 760px; }
+  @media (max-width: 760px) {
+    .zwei, .reihe { grid-template-columns: 1fr; }
+    .zwei .kasten { margin-top: 0; }
+  }
+</style>

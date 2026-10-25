@@ -1,0 +1,30 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import { verein } from '../data/verein';
+---
+<Basis titel="Impressum" beschreibung="Impressum des EzL, Erforschung zukunftsfähiger Landnutzungsformen.">
+  <Seitenkopf titel="Impressum" />
+  <div class="inhalt"><div class="wrap lese">
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <p>
+      {verein.name} ({verein.kurz})<br />
+      {verein.rechtsform}<br />
+      {verein.anschrift ? verein.anschrift.map((z) => <>{z}<br /></>) : <span class="offen">Postanschrift wird ergänzt<br /></span>}
+    </p>
+    <p>Vertreten durch den Vorsitzenden: {verein.vorsitz}</p>
+
+    <h2>Kontakt</h2>
+    <p>E-Mail: <a href={`mailto:${verein.email}`}>{verein.email}</a></p>
+
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>{verein.vorsitz}{verein.anschrift ? <>, {verein.anschrift.join(', ')}</> : null}</p>
+
+    <h2>Bildrechte</h2>
+    <p>Logo, Fotos und Pflanzpläne: EzL und Sebastian Weber. Grafiken auf dieser Seite sind eigene Zeichnungen.</p>
+
+    <h2>Haftung für Links</h2>
+    <p>Diese Seite enthält Links zu Seiten anderer Anbieter. Für deren Inhalte sind ausschließlich die jeweiligen Anbieter verantwortlich. Zum Zeitpunkt der Verlinkung waren keine Rechtsverstöße erkennbar. Sollten uns solche bekannt werden, entfernen wir den Link umgehend.</p>
+  </div></div>
+</Basis>
+<style>.offen { background: #FFF3D6; padding: 0 4px; border-radius: 4px; }</style>

@@ -1,0 +1,84 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+import { Image } from 'astro:assets';
+import aquarell from '../assets/logo-aquarell.jpg';
+import { verein } from '../data/verein';
+
+const taetigkeiten = [
+  ['Gemeinsam studieren', 'Wir lesen und diskutieren zentrale Literatur zu Permakultur, Agroforst und Bodenaufbau und schreiben eigene Pflanzlisten.'],
+  ['Flächen anlegen', 'Acker und Wald in Britz verwandeln wir Schritt für Schritt in Waldgärten.'],
+  ['Pflanzen vermehren', 'Im Muttergarten und in der Baumschule ziehen wir Gehölze aus Samen und Stecklingen.'],
+  ['Wildgärtnern', 'Wir pflegen alte Obstbäume und Nussbäume in der Landschaft und pflanzen neue dazu.'],
+  ['Kräuterwanderungen', 'Essbare Wildpflanzen und Pilze erkennen, sammeln und verarbeiten.'],
+  ['Mit Hochschulen forschen', 'Studierende begleiten unsere Flächen zu Boden, Artenvielfalt und Pflanzengemeinschaften.'],
+];
+---
+<Basis titel="Über uns" beschreibung="Der EzL, Erforschung zukunftsfähiger Landnutzungsformen, ist ein kleiner Verein aus der Schorfheide. Wer wir sind, was wir tun und mit wem wir zusammenarbeiten.">
+  <Seitenkopf dachzeile="Wer sind wir?" titel="Ein kleiner Verein mit großen Bäumen" />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="oben">
+      <div class="lese">
+        <p class="gross">Der EzL, „Erforschung zukunftsfähiger Landnutzungsformen“, ist ein {verein.rechtsform} mit Sitz in der {verein.sitz}. Wir sind heute {verein.mitglieder} Mitglieder: Menschen, die zusammen pflanzen, lernen und ausprobieren, wie man vom Land leben kann, ohne es auszubeuten.</p>
+        <p>Angefangen hat es mit zwei Menschen und vielen Büchern. Heute haben wir einen Muttergarten mit Baumschule, einen Acker und ein Stück Wald in Britz, regelmäßige Treffen und ein wachsendes Netzwerk.</p>
+        <p>Vorsitzender des Vereins ist {verein.vorsitz}.</p>
+      </div>
+      <figure class="logo">
+        <Image src={aquarell} alt="Das Logo des EzL" widths={[320, 480]} sizes="(max-width: 760px) 70vw, 300px" />
+        <figcaption>Baum, Jurte und Geweih: Landschaft, Gemeinschaft und Wildtiere gehören für uns zusammen.</figcaption>
+      </figure>
+    </div>
+
+    <div class="lese">
+      <h2>Wofür wir stehen</h2>
+      <p>Unsere Satzung nennt vier Zwecke:</p>
+    </div>
+    <div class="raster zwecke">
+      <div class="kasten"><h3>Naturschutz</h3><p>Degradierte Flächen in vielfältige Landschaften verwandeln, in denen Wasser, Boden und Lebewesen wieder zusammenspielen.</p></div>
+      <div class="kasten"><h3>Bildung</h3><p>Wissen über nachhaltige Landnutzung weitergeben, an Kinder und Erwachsene, in Kursen, Exkursionen und auf dieser Seite.</p></div>
+      <div class="kasten"><h3>Pflanzenzucht</h3><p>Pflanzen vermehren, alte und regionale Sorten erhalten, Saatgut und Pflanzen tauschen.</p></div>
+      <div class="kasten"><h3>Engagement</h3><p>Menschen zusammenbringen, die sich gemeinsam für diese Ziele einsetzen.</p></div>
+    </div>
+
+    <div class="lese">
+      <h2>Was wir tun</h2>
+    </div>
+    <ul class="taetig">
+      {taetigkeiten.map(([t, x]) => <li><b>{t}</b><span>{x}</span></li>)}
+    </ul>
+
+    <div class="lese">
+      <h2>Mit wem wir arbeiten</h2>
+      <p>Wissenschaftlich begleitet werden unsere Flächen von drei Hochschulen:</p>
+      <ul class="partner">
+        {verein.partner.map((p) => <li>{p.name}</li>)}
+      </ul>
+      <p>Außerdem sind wir im Austausch mit Initiativen aus der Region, etwa dem Netzwerk Brandenburg im Wandel und Transition Town Eberswalde, und mit Menschen, die schon heute mit Permakultur wirtschaften.</p>
+
+      <h2>Wie wir miteinander umgehen</h2>
+      <p>Wir entscheiden möglichst gemeinsam und nutzen dafür Methoden wie das Systemische Konsensieren. Bei Konflikten orientieren wir uns an der Gewaltfreien Kommunikation. Das klappt nicht immer perfekt, aber wir üben.</p>
+    </div>
+
+    <Weiter links={[{ href: '/mitmachen/', text: 'Mitmachen' }, { href: '/vision/', text: 'Unsere Vision' }]} />
+  </div></div>
+</Basis>
+
+<style>
+  .oben { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+  .gross { font-size: 20px; }
+  .logo { margin: 24px 0 0; }
+  .logo img { max-width: 320px; margin: 0 auto; border-radius: 0; }
+  .logo figcaption { text-align: center; }
+  .zwecke { grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .zwecke .kasten { margin: 0; }
+  .zwecke h3 { margin-top: 0; }
+  .zwecke p { margin: 0; font-size: 16px; }
+  .taetig { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 12px 28px; }
+  .taetig li { display: flex; flex-direction: column; border-left: 3px solid var(--lehm); padding-left: 14px; }
+  .taetig b { font: 700 17px var(--kopf); color: var(--wald); }
+  .taetig span { font-size: 16px; color: var(--grau); }
+  .partner { font: 600 17px var(--kopf); color: var(--wald); padding-left: 20px; }
+  @media (max-width: 760px) { .oben { grid-template-columns: 1fr; gap: 0; } }
+</style>

@@ -1,0 +1,112 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource-variable/literata';
+import '../styles/global.css';
+import { Image } from 'astro:assets';
+import linienlogo from '../assets/logo-linie.jpg';
+import { verein, navigation, fussLinks } from '../data/verein';
+
+interface Props {
+  titel: string;
+  beschreibung: string;
+}
+const { titel, beschreibung } = Astro.props;
+const pfad = Astro.url.pathname;
+const istStart = pfad === '/';
+const seitenTitel = istStart ? `${verein.kurz}: ${verein.name}` : `${titel} | ${verein.kurz}`;
+const aktiv = (href: string) => pfad.startsWith(href);
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{seitenTitel}</title>
+  <meta name="description" content={beschreibung} />
+  <meta name="theme-color" content="#1F4430" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/icon-180.png" />
+  <link rel="canonical" href={new URL(pfad, Astro.site)} />
+  <meta property="og:title" content={seitenTitel} />
+  <meta property="og:description" content={beschreibung} />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:image" content={new URL('/icon-512.png', Astro.site)} />
+</head>
+<body>
+  <a class="sr sprung" href="#hauptinhalt">Zum Inhalt springen</a>
+  <header class="kopf">
+    <div class="kopf__innen">
+      <a class="marke" href="/" aria-label="EzL Startseite">
+        <Image src={linienlogo} alt="" width={36} height={36} densities={[1, 2]} />
+        <span>EzL</span>
+      </a>
+      <nav class="nav" aria-label="Hauptnavigation">
+        {navigation.map((n) => (
+          <a href={n.href} aria-current={aktiv(n.href) ? 'page' : undefined}>{n.text}</a>
+        ))}
+      </nav>
+      <details class="menue">
+        <summary aria-label="Menü öffnen"><span></span><span></span><span></span></summary>
+        <div class="menue__liste">
+          {navigation.map((n) => <a href={n.href}>{n.text}</a>)}
+          <hr />
+          {fussLinks.slice(0, 5).map((n) => <a href={n.href}>{n.text}</a>)}
+        </div>
+      </details>
+    </div>
+  </header>
+
+  <main id="hauptinhalt">
+    <slot />
+  </main>
+
+  <footer class="fuss">
+    <div class="wrap fuss__innen">
+      <div class="fuss__marke">
+        <Image src={linienlogo} alt="" width={64} height={64} densities={[1, 2]} />
+        <p><b>{verein.kurz}</b><br />{verein.name}<br /><span>{verein.rechtsform}, Sitz {verein.sitz}</span></p>
+      </div>
+      <nav aria-label="Weitere Seiten">
+        {fussLinks.map((n) => <a href={n.href}>{n.text}</a>)}
+      </nav>
+    </div>
+    <div class="wrap fuss__klein">Ohne Cookies und ohne Tracking.</div>
+  </footer>
+</body>
+</html>
+
+<style>
+  .sprung:focus { position: fixed; left: 12px; top: 12px; width: auto; height: auto; clip: auto; background: var(--wald); color: #fff; padding: 10px 14px; border-radius: 8px; z-index: 10; }
+  .kopf { background: var(--papier); border-bottom: 1px solid transparent; }
+  .kopf__innen { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 20px; max-width: var(--breite); margin: 0 auto; position: relative; }
+  .marke { display: inline-flex; align-items: center; gap: 10px; font: 800 19px var(--kopf); letter-spacing: .02em; color: var(--wald); text-decoration: none; }
+  .marke img { width: 36px; height: 36px; border-radius: 50%; }
+  .nav { display: flex; gap: 20px; }
+  .nav a { font: 600 15px var(--kopf); color: var(--wald); text-decoration: none; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav a:hover, .nav a[aria-current] { border-bottom-color: var(--lehm); }
+  .menue { display: none; }
+  .menue summary { list-style: none; cursor: pointer; width: 44px; height: 44px; display: grid; place-content: center; gap: 5px; border-radius: 10px; }
+  .menue summary::-webkit-details-marker { display: none; }
+  .menue summary span { display: block; width: 22px; height: 2px; background: var(--wald); border-radius: 2px; }
+  .menue[open] summary { background: var(--sand); }
+  .menue__liste { position: absolute; right: 12px; top: 64px; z-index: 5; background: #fff; border: 1.5px solid var(--linie); border-radius: 14px; padding: 8px; min-width: 220px; box-shadow: 0 12px 30px rgba(0,0,0,.12); display: flex; flex-direction: column; }
+  .menue__liste a { font: 600 16px var(--kopf); color: var(--wald); text-decoration: none; padding: 10px 12px; border-radius: 8px; }
+  .menue__liste a:hover { background: var(--sand); }
+  .menue__liste hr { border: 0; border-top: 1px solid var(--linie); margin: 6px 4px; width: auto; }
+  @media (max-width: 760px) {
+    .nav { display: none; }
+    .menue { display: block; }
+  }
+  .fuss { background: var(--sand); padding: 36px 0 24px; font-size: 15px; }
+  .fuss__innen { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+  .fuss__marke { display: flex; gap: 14px; align-items: center; }
+  .fuss__marke img { width: 64px; height: 64px; border-radius: 50%; }
+  .fuss__marke p { margin: 0; line-height: 1.45; }
+  .fuss__marke b { font: 800 17px var(--kopf); color: var(--wald); }
+  .fuss__marke span { color: var(--grau); font-size: 14px; }
+  .fuss nav { display: grid; grid-template-columns: repeat(2, minmax(0, auto)); gap: 6px 28px; align-content: start; }
+  .fuss nav a { font: 600 15px var(--kopf); text-decoration: none; }
+  .fuss nav a:hover { text-decoration: underline; }
+  .fuss__klein { margin-top: 24px; color: var(--grau); font-size: 13px; }
+</style>

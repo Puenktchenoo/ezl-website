@@ -1,0 +1,82 @@
+---
+import Basis from '../layouts/Basis.astro';
+import Seitenkopf from '../components/Seitenkopf.astro';
+import Weiter from '../components/Weiter.astro';
+
+const phasen = [
+  { zeit: 'Die ersten Jahre', titel: 'Anlegen', text: 'Pflanzen, mulchen, wässern, schützen. Es fließt vor allem Arbeit und Geld hinein. Erste Ernten kommen von Beeren, Kräutern und einjährigem Gemüse zwischen den jungen Bäumen.' },
+  { zeit: 'Nach einigen Jahren', titel: 'Obst und Sträucher', text: 'Viele Obstbäume und Sträucher beginnen zu tragen. Pflanzen aus der eigenen Vermehrung können verkauft oder getauscht werden.' },
+  { zeit: 'Nach vielen Jahren', titel: 'Nüsse und Holz', text: 'Große Nussbäume wie Esskastanie und Walnuss tragen, je nach Sorte und Herkunft, oft erst nach etlichen Jahren. Dafür können sie danach jahrzehntelang ernten lassen. Dazu kommt Holz aus Kopfbäumen und Hecken.' },
+];
+
+const standbeine = [
+  { titel: 'Überschüsse verkaufen', text: 'Obst, Nüsse und Gemüse, die die Gemeinschaft nicht selbst braucht: über Gemüsekisten, Solidarische Landwirtschaft, Hofläden oder Bioläden in der Region.' },
+  { titel: 'Pflanzen aus der Baumschule', text: 'Junge Bäume und Sträucher, die an unser Klima gewöhnt sind. Für andere Gärten, Projekte und Gemeinden.' },
+  { titel: 'Kurse und Führungen', text: 'Workshops zu Permakultur, Obstbaumschnitt, Vermehrung oder essbaren Wildpflanzen. Für Erwachsene, Schulen und Kitas.' },
+  { titel: 'Planung und Pflege', text: 'Permakulturplanung für private und öffentliche Flächen, Naschgärten für Kitas und Schulen, essbare Gemeinden.' },
+  { titel: 'Holz und Biomasse', text: 'Bauholz, Brennholz und Holzhäcksel aus Kopfbäumen und Hecken, die ohnehin geschnitten werden.' },
+  { titel: 'Weiterverarbeitung', text: 'Aus Nüssen, Obst und Wildpflanzen lassen sich Mehl, Öl, Säfte, Pestos und Tees machen. Damit bleibt mehr Wert in der Region.' },
+];
+---
+<Basis titel="Lohnt sich das?" beschreibung="Kann Permakultur wirtschaftlich tragen? Was ein Waldgarten über die Jahre einbringen kann, welche Standbeine es gibt und was wir noch nicht wissen.">
+  <Seitenkopf dachzeile="Permakultur und Geld" titel="Lohnt sich das?" unter="Ein Waldgarten soll nicht nur schön sein, sondern auch Menschen ernähren und ein Einkommen ermöglichen. Ob und wie das klappt, wollen wir zeigen." />
+
+  <div class="inhalt"><div class="wrap">
+    <div class="lese">
+      <p>Eine ehrliche Antwort vorweg: Ein Waldgarten ist eine Investition mit langem Atem. In den ersten Jahren kostet er mehr, als er einbringt. Wer schnelle Erträge braucht, ist mit Gemüsebau besser beraten. Wer aber in Jahrzehnten denkt, für den kann sich die Rechnung anders darstellen.</p>
+      <h2>Wie sich Erträge über die Zeit entwickeln</h2>
+    </div>
+
+    <ol class="phasen">
+      {phasen.map((p) => (
+        <li><span class="dachzeile">{p.zeit}</span><b>{p.titel}</b><p>{p.text}</p></li>
+      ))}
+    </ol>
+
+    <div class="lese">
+      <h2>Warum sich das trotzdem rechnen kann</h2>
+      <p>Der große Unterschied zum einjährigen Anbau: Die Pflanzen werden nur einmal gesetzt. Es entfallen das jährliche Pflügen, Säen und vieles an Dünger und Pflanzenschutz. Wenn das System einmal steht, besteht die Arbeit vor allem aus Pflege und Ernte.</p>
+      <p>Dazu kommt, dass ein Waldgarten viele verschiedene Produkte liefert. Fällt eine Ernte aus, etwa durch Spätfrost bei der Aprikose, tragen andere Arten trotzdem. Das verteilt das Risiko.</p>
+      <p>Und der Wert einer solchen Fläche zeigt sich nicht nur in Euro: Humusaufbau, gespeichertes Wasser, Lebensraum und Kohlenstoff im Holz sind Leistungen, von denen auch Nachbarn und Gesellschaft etwas haben.</p>
+
+      <h2>Mehrere Standbeine</h2>
+      <p>Kaum ein Permakulturbetrieb lebt nur vom Verkauf der Ernte. Die meisten verbinden mehrere Einnahmen. Das sind die, die wir für unsere Region sehen:</p>
+    </div>
+    <div class="raster standbeine">
+      {standbeine.map((s) => <div class="kasten"><h3>{s.titel}</h3><p>{s.text}</p></div>)}
+    </div>
+
+    <div class="lese">
+      <h2>Was wir noch nicht wissen</h2>
+      <p>Belastbare Zahlen zu Erträgen und Arbeitszeit von Waldgärten unter Brandenburger Bedingungen gibt es bisher kaum. Genau hier setzen wir mit unseren Flächen und den begleitenden Hochschulen an. Wir dokumentieren, was wir pflanzen, was anwächst, wie viel Arbeit es macht und was wir ernten. Wenn wir Ergebnisse haben, teilen wir sie hier, auch wenn sie ernüchternd ausfallen.</p>
+      <p>Wir tauschen uns außerdem mit Menschen aus, die schon heute mit Permakultur wirtschaften, zum Beispiel mit dem Café Botanico in Berlin, einem Restaurant mit eigenem Permakulturgarten.</p>
+
+      <div class="kasten kasten--hinweis">
+        <p>Als Verein arbeiten wir nicht gewinnorientiert. Unsere Flächen sind Lernflächen und Modellflächen. Das Ziel ist zu zeigen, wie andere davon leben können: Familien, Gemeinschaften, kleine Betriebe.</p>
+      </div>
+    </div>
+
+    <Weiter links={[{ href: '/permakultur/', text: 'Grundlagen der Permakultur' }, { href: '/kontakt/', text: 'Fragen? Schreib uns' }]} />
+  </div></div>
+</Basis>
+
+<style>
+  .phasen { list-style: none; padding: 0; margin: 16px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; position: relative; }
+  .phasen li { padding: 20px 20px 20px 0; border-top: 4px solid var(--blatt); position: relative; }
+  .phasen li:nth-child(2) { border-top-color: var(--wald); }
+  .phasen li:nth-child(3) { border-top-color: var(--lehm); }
+  .phasen li::before { content: ''; position: absolute; top: -11px; left: 0; width: 18px; height: 18px; border-radius: 50%; background: inherit; border: 4px solid var(--papier); background: var(--wald); }
+  .phasen b { display: block; font: 800 21px var(--kopf); color: var(--wald); margin: 4px 0 6px; }
+  .phasen p { margin: 0; font-size: 16px; }
+  .standbeine { margin-top: 18px; }
+  .standbeine .kasten { margin: 0; }
+  .standbeine h3 { margin-top: 0; }
+  .standbeine p { margin: 0; font-size: 16px; }
+  @media (max-width: 760px) {
+    .phasen { grid-template-columns: 1fr; }
+    .phasen li { padding: 18px 0 18px 26px; border-top: 0; border-left: 4px solid var(--blatt); }
+    .phasen li:nth-child(2) { border-left-color: var(--wald); }
+    .phasen li:nth-child(3) { border-left-color: var(--lehm); }
+    .phasen li::before { top: 18px; left: -15px; }
+  }
+</style>
