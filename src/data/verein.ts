@@ -35,11 +35,6 @@ export const verein = {
   // OFFEN: YouTube Video. Nur die ID eintragen, zum Beispiel 'dQw4w9WgXcQ'.
   videoId: null as string | null,
 
-  partner: [
-    { name: 'Hochschule Neubrandenburg', kurz: 'HS NB' },
-    { name: 'Hochschule für nachhaltige Entwicklung Eberswalde', kurz: 'HNE' },
-    { name: 'Hochschule für Technik und Wirtschaft Berlin', kurz: 'HTW' },
-  ],
 } as const;
 
 export const navigation = [

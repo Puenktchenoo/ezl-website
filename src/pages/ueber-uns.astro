@@ -12,7 +12,7 @@ const taetigkeiten = [
   ['Pflanzen vermehren', 'Im Muttergarten und in der Baumschule ziehen wir Gehölze aus Samen und Stecklingen.'],
   ['Wildgärtnern', 'Wir pflegen alte Obstbäume und Nussbäume in der Landschaft und pflanzen neue dazu.'],
   ['Kräuterwanderungen', 'Essbare Wildpflanzen und Pilze erkennen, sammeln und verarbeiten.'],
-  ['Mit Hochschulen forschen', 'Studierende begleiten unsere Flächen zu Boden, Artenvielfalt und Pflanzengemeinschaften.'],
+  ['Beobachten und dokumentieren', 'Wir halten fest, was auf unseren Flächen anwächst, was nicht und wie sich Boden und Artenvielfalt verändern.'],
 ];
 ---
 <Basis titel="Über uns" beschreibung="Der EzL, Erforschung zukunftsfähiger Landnutzungsformen, ist ein kleiner Verein aus der Schorfheide. Wer wir sind, was wir tun und mit wem wir zusammenarbeiten.">
@@ -51,11 +51,7 @@ const taetigkeiten = [
 
     <div class="lese">
       <h2>Mit wem wir arbeiten</h2>
-      <p>Wissenschaftlich begleitet werden unsere Flächen von drei Hochschulen:</p>
-      <ul class="partner">
-        {verein.partner.map((p) => <li>{p.name}</li>)}
-      </ul>
-      <p>Außerdem sind wir im Austausch mit Initiativen aus der Region, etwa dem Netzwerk Brandenburg im Wandel und Transition Town Eberswalde, und mit Menschen, die schon heute mit Permakultur wirtschaften.</p>
+      <p>Wir sind im Austausch mit Initiativen aus der Region, etwa dem Netzwerk Brandenburg im Wandel und Transition Town Eberswalde, und mit Menschen, die schon heute mit Permakultur wirtschaften.</p>
 
       <h2>Wie wir miteinander umgehen</h2>
       <p>Wir entscheiden möglichst gemeinsam und nutzen dafür Methoden wie das Systemische Konsensieren. Bei Konflikten orientieren wir uns an der Gewaltfreien Kommunikation. Das klappt nicht immer perfekt, aber wir üben.</p>
@@ -79,6 +75,5 @@ const taetigkeiten = [
   .taetig li { display: flex; flex-direction: column; border-left: 3px solid var(--lehm); padding-left: 14px; }
   .taetig b { font: 700 17px var(--kopf); color: var(--wald); }
   .taetig span { font-size: 16px; color: var(--grau); }
-  .partner { font: 600 17px var(--kopf); color: var(--wald); padding-left: 20px; }
   @media (max-width: 760px) { .oben { grid-template-columns: 1fr; gap: 0; } }
 </style>
