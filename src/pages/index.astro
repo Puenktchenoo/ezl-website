@@ -4,7 +4,7 @@ import LandBand from '../components/LandBand.astro';
 import Video from '../components/Video.astro';
 import { Image } from 'astro:assets';
 import aquarell from '../assets/logo-aquarell.jpg';
-import holz from '../assets/holz1.jpg';
+import gilde from '../assets/gilde.jpg';
 import { verein } from '../data/verein';
 
 const stellen = [
@@ -83,7 +83,7 @@ const stellen = [
     <div class="karten">
       <a class="karte" href="/permakultur/"><b>Was ist Permakultur?</b><span>Drei Grundsätze, zwölf Prinzipien und was ein Waldgarten anders macht als ein Acker.</span></a>
       <a class="karte" href="/flaechen/">
-        <Image src={holz} alt="" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__bild" />
+        <Image src={gilde} alt="Gezeichnete Pflanzengilde: ein junger Baum, umgeben von Beerensträuchern, Kräutern und Mulch" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__bild" />
         <b>Unsere Flächen</b><span>Acker und Wald in Britz, mit Pflanzplänen, Swales und lehmigem Sand.</span>
       </a>
       <a class="karte" href="/muttergarten/"><b>Der Muttergarten</b><span>Wo alles angefangen hat und wo die Bäume von morgen heranwachsen.</span></a>
@@ -101,10 +101,16 @@ const stellen = [
   .hero__innen { max-width: var(--breite); margin: 0 auto; padding: 20px 20px 44px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
   .logo-box { position: relative; width: 100%; max-width: 440px; justify-self: center; }
   .logo-box img { width: 100%; height: auto; display: block; }
-  .stelle { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; display: block; transition: background .2s; }
-  .stelle span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; background: var(--wald); color: #fff; font: 700 13px var(--kopf); padding: 5px 10px; border-radius: 999px; opacity: 0; transition: opacity .2s; pointer-events: none; }
-  .stelle:hover span, .stelle:focus-visible span { opacity: 1; }
-  .stelle:hover { background: rgba(31, 68, 48, .07); }
+  /* Klickbare Stellen im Logo: ein Tipp führt sofort zur Seite. */
+  .stelle { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; transition: background .15s, box-shadow .15s; }
+  .stelle span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; background: var(--wald); color: #fff; font: 700 13px var(--kopf); padding: 5px 10px; border-radius: 999px; opacity: 0; transition: opacity .15s; pointer-events: none; }
+  .stelle:active { background: rgba(31, 68, 48, .16); box-shadow: 0 0 0 3px rgba(184, 134, 75, .55); }
+  .stelle:focus-visible span { opacity: 1; }
+  /* Beschriftung nur mit echter Maus. Auf dem Handy würde sie sonst den ersten Tipp abfangen. */
+  @media (hover: hover) and (pointer: fine) {
+    .stelle:hover { background: rgba(31, 68, 48, .08); box-shadow: 0 0 0 2px rgba(184, 134, 75, .45); }
+    .stelle:hover span { opacity: 1; }
+  }
   .hero__text h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.04; margin-bottom: 14px; }
   .unter { margin: 0 0 10px; font-size: 19px; }
   .tipp { margin: 0 0 18px; font: 600 14px var(--kopf); color: var(--lehm-dunkel); }
@@ -121,7 +127,7 @@ const stellen = [
   .zahlen dd { margin: 0; font-size: 14px; opacity: .88; }
 
   .karten { padding-bottom: 48px; }
-  .karte__bild { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 12px; margin-bottom: 6px; }
+  .karte__bild { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background: #fff; border-radius: 12px; margin-bottom: 6px; }
 
   @media (max-width: 760px) {
     .hero__innen { grid-template-columns: 1fr; gap: 10px; padding-top: 6px; }

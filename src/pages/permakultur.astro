@@ -4,6 +4,8 @@ import Seitenkopf from '../components/Seitenkopf.astro';
 import Weiter from '../components/Weiter.astro';
 import Grundsaetze from '../components/grafik/Grundsaetze.astro';
 import Schichten from '../components/grafik/Schichten.astro';
+import { Image } from 'astro:assets';
+import gilde from '../assets/gilde.jpg';
 
 const prinzipien = [
   ['Beobachten und handeln', 'Erst schauen, wie Wasser, Wind und Sonne über eine Fläche gehen. Dann eingreifen.'],
@@ -55,6 +57,10 @@ const prinzipien = [
     <Schichten />
     <div class="lese">
       <p>Pflanzen, die sich gut ergänzen, setzen wir in sogenannten <b>Gilden</b> zusammen: zum Beispiel einen Obstbaum mit Sträuchern darunter, mit Pflanzen, die Stickstoff aus der Luft binden, und mit tief wurzelnden Stauden, deren Laub als Mulch liegen bleibt. Welche Kombinationen auf Brandenburger Sand wirklich funktionieren, ist eine der Fragen, die wir auf unseren Flächen beobachten.</p>
+      <figure class="gilde">
+        <Image src={gilde} alt="Gezeichnete Pflanzengilde: ein junger Baum in der Mitte, daneben Beerensträucher, ein Wildrosenstrauch und Kräuter auf einer Mulchschicht. Eine Biene fliegt heran." widths={[400, 700, 1024]} sizes="(max-width: 760px) 90vw, 560px" />
+        <figcaption>Eine Gilde: Baum, Sträucher, Kräuter und Mulch unterstützen sich gegenseitig.</figcaption>
+      </figure>
 
       <h2>Was ist anders als auf dem Acker?</h2>
       <p>Auf einem klassischen Acker wird jedes Jahr neu gepflügt, gesät, gedüngt und geerntet. Der Boden liegt oft wochenlang offen. In einem Waldgarten stehen die meisten Pflanzen über viele Jahre. Der Boden bleibt bedeckt, Laub und Schnittgut werden zu Humus, Wurzeln lockern den Boden.</p>
@@ -87,6 +93,9 @@ const prinzipien = [
 </Basis>
 
 <style>
+  .gilde { max-width: 560px; margin: 28px auto; }
+  .gilde img { border-radius: 0; mix-blend-mode: multiply; }
+  .gilde figcaption { text-align: center; }
   .drei-g { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
   .drei-g .kasten { margin: 0; }
   .drei-g h3 { margin-top: 0; }
