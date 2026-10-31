@@ -6,6 +6,7 @@ import { Image } from 'astro:assets';
 import aquarell from '../assets/logo-aquarell.jpg';
 import gilde from '../assets/gilde.jpg';
 import sippe from '../assets/sippenlandschaft.jpg';
+import lichtung from '../assets/lichtung.png';
 import { verein } from '../data/verein';
 
 const stellen = [
@@ -89,7 +90,7 @@ const stellen = [
         <Image src={gilde} alt="Gezeichnete Pflanzengilde: ein junger Baum, umgeben von Beerensträuchern, Kräutern und Mulch" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__bild" />
         <b>Unsere Flächen</b><span>Acker und Wald in Britz, mit Pflanzplänen, Swales und lehmigem Sand.</span>
       </a>
-      <a class="karte" href="/muttergarten/"><b>Der Muttergarten</b><span>Wo alles angefangen hat und wo die Bäume von morgen heranwachsen.</span></a>
+      <a class="karte" href="/muttergarten/"><Image src={lichtung} alt="" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__bild" /><b>Der Muttergarten</b><span>Wo alles angefangen hat und wo die Bäume von morgen heranwachsen.</span></a>
       <a class="karte" href="/vision/"><Image src={sippe} alt="" widths={[400, 700]} sizes="(max-width: 700px) 90vw, 330px" class="karte__foto" /><b>Unsere Vision</b><span>Sippenlandschaft, Zusammenschaft, Jurten und Wildtiere.</span></a>
       <a class="karte" href="/wirtschaft/"><b>Lohnt sich das?</b><span>Wie Permakultur wirtschaftlich tragen kann: Nüsse, Obst, Pflanzen, Kurse, Planung.</span></a>
       <a class="karte" href="/mitmachen/"><b>Mitmachen</b><span>Mitglied werden, spenden, mitpflanzen.</span></a>

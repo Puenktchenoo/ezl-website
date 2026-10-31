@@ -2,6 +2,8 @@
 import Basis from '../layouts/Basis.astro';
 import Seitenkopf from '../components/Seitenkopf.astro';
 import Weiter from '../components/Weiter.astro';
+import { Image } from 'astro:assets';
+import lichtung from '../assets/lichtung.png';
 
 const kapitel = [
   {
@@ -43,14 +45,20 @@ const kapitel = [
   <Seitenkopf dachzeile="Wo alles angefangen hat" titel="Der Muttergarten" unter="Eine kleine Geschichte darüber, wie aus Büchern Bäume werden." />
 
   <div class="inhalt"><div class="wrap">
-    <ol class="geschichte">
-      {kapitel.map((k) => (
-        <li>
-          <h2>{k.titel}</h2>
-          {k.text.map((t) => <p>{t}</p>)}
-        </li>
-      ))}
-    </ol>
+    <div class="mg-raster">
+  <ol class="geschichte">
+        {kapitel.map((k) => (
+          <li>
+            <h2>{k.titel}</h2>
+            {k.text.map((t) => <p>{t}</p>)}
+          </li>
+        ))}
+      </ol>
+      <figure class="see">
+        <Image src={lichtung} alt="Gezeichneter Garten an einem Teich: Seerosen auf dem Wasser, ringsum Esskastanie, Apfel, Birne, Himbeeren, Lavendel und Kräuter, dahinter Kiefern und Birken im Sonnenlicht." widths={[400, 640, 998]} sizes="(max-width: 860px) 90vw, 380px" />
+        <figcaption>Ein Garten am Wasser, so wie am Üdersee. Eine Illustration, kein Foto.</figcaption>
+      </figure>
+    </div>
 
     <div class="kasten kasten--hinweis lese">
       <p>Der Muttergarten liegt auf privatem Grund und ist nicht öffentlich zugänglich. Wer ihn kennenlernen möchte, kommt am besten zu einem unserer Treffen. <a href="/kontakt/">Schreib uns</a>, dann sagen wir dir, wann das nächste ist.</p>
@@ -61,6 +69,11 @@ const kapitel = [
 </Basis>
 
 <style>
+  .mg-raster { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+  .see { position: sticky; top: 24px; margin: 40px 0 0; }
+  .see img { border-radius: 0; }
+  .see figcaption { text-align: center; }
+  @media (max-width: 860px) { .mg-raster { grid-template-columns: 1fr; gap: 0; } .see { position: static; order: -1; max-width: 420px; margin: 28px auto 0; } }
   .geschichte { list-style: none; padding: 0; margin: 40px 0 0; max-width: var(--lese); counter-reset: k; }
   .geschichte li { counter-increment: k; position: relative; padding: 0 0 28px 56px; border-left: 2px solid var(--linie); margin-left: 18px; }
   .geschichte li:last-child { border-left-color: transparent; }
