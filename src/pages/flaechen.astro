@@ -10,6 +10,7 @@ import waldSchema from '../assets/plaene/wald-schema.png';
 import acker1 from '../assets/plaene/acker-1.png';
 import acker2 from '../assets/plaene/acker-2.png';
 import acker3 from '../assets/plaene/acker-3.png';
+import lichtung from '../assets/lichtung.png';
 ---
 <Basis titel="Unsere Flächen" beschreibung="Acker und Wald in Britz: 1.700 m² Acker werden zum Waldgarten, 1,5 ha Kiefernforst sollen ein essbarer Dauerwald werden. Mit Pflanzplänen, Swales und lehmigem Sand.">
   <Seitenkopf dachzeile="Britz bei Eberswalde" titel="Unsere Flächen" unter="Ein Acker und ein Stück Wald, beide auf trockenem, lehmigem Sand. Hier probieren wir aus, was wir in Büchern und Kursen gelernt haben." />
@@ -53,6 +54,10 @@ import acker3 from '../assets/plaene/acker-3.png';
           <p>Unser Ziel ist ein essbarer Dauerwald. Dafür haben wir eine Lichtung geschaffen. Die Schnittreste bleiben als Mulch und für den Bodenaufbau auf der Fläche. Aus Ästen entstehen Totholzhaufen und Benjeshecken, also locker aufgeschichtete Hecken aus Reisig, in denen Vögel, Igel und Insekten Unterschlupf finden.</p>
           <p>In die Lichtung pflanzen wir große, langlebige Nussbäume und seltene Wildobstarten: Esskastanie, Pekannuss, Herznuss, Armandskiefer und Nusskiefer, Elsbeere, Speierling, Baumhasel, Weiße Maulbeere und Amerikanischen Zürgelbaum. Am Rand folgen Sträucher und Beeren.</p>
       </div>
+      <figure class="lichtung">
+        <Image src={lichtung} alt="Gezeichnete Waldlichtung: ein Teich mit Seerosen, umgeben von Esskastanie, Apfel, Birne, Himbeeren, Lavendel und Kräutern, dahinter Kiefern und Birken im Sonnenlicht." widths={[480, 760, 998]} sizes="(max-width: 760px) 90vw, 520px" />
+        <figcaption>So könnte die Lichtung eines Tages aussehen. Eine Illustration, kein Foto.</figcaption>
+      </figure>
 
       <div class="plaene plaene--zwei">
         <figure>
@@ -112,6 +117,9 @@ import acker3 from '../assets/plaene/acker-3.png';
   .plaene--zwei { grid-template-columns: 1.25fr 1fr; }
   .plaene figure { margin: 0; }
   .plaene img { border: 1.5px solid var(--linie); }
+  .lichtung { max-width: 520px; margin: 28px auto 8px; }
+  .lichtung img { border-radius: 0; }
+  .lichtung figcaption { text-align: center; }
   .hinweis-klein { font-size: 14px; color: var(--grau); margin: 10px 0 0; }
   @media (max-width: 760px) {
     .plaene, .plaene--zwei { grid-template-columns: 1fr; }
