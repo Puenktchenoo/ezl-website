@@ -32,8 +32,8 @@ export const verein = {
     bic: '',
   },
 
-  // OFFEN: YouTube Video. Nur die ID eintragen, zum Beispiel 'dQw4w9WgXcQ'.
-  videoId: null as string | null,
+  // YouTube Video. Nur die ID eintragen (aus https://youtu.be/ID).
+  videoId: 'ehJ2I9E9mic' as string | null,
 
 } as const;
 

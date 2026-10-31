@@ -3,11 +3,11 @@ import { verein } from '../data/verein';
 const id = verein.videoId;
 ---
 <div class="video" data-id={id ?? ''}>
-  <img src="/kronen.svg" alt="" width="1200" height="420" />
+  {id ? <img class="vorschau" src="/video-vorschau.jpg" alt="" width="1280" height="720" loading="lazy" /> : <img src="/kronen.svg" alt="" width="1200" height="420" />}
   {id ? (
     <button type="button" class="play">
       <i aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="#1F4430" /></svg></i>
-      Was ist der EzL? Video ansehen
+      <span class="play__text">Was ist der EzL? Video ansehen</span>
     </button>
   ) : (
     <span class="play play--bald">
@@ -40,6 +40,12 @@ const id = verein.videoId;
   .play--bald { cursor: default; opacity: .9; }
   .play i { width: 64px; height: 64px; flex: none; border-radius: 50%; background: #fff; display: grid; place-items: center; }
   button.play:hover i { transform: scale(1.06); }
+  .video img.vorschau { opacity: 1; }
+  .video:has(.vorschau) { background: #F3F1E5; }
+  .video:has(.vorschau) .play__text { background: var(--wald); padding: 8px 14px; border-radius: 999px; }
+  .video:has(.vorschau) i { box-shadow: 0 6px 24px rgba(0,0,0,.25); background: var(--wald); }
+  .video:has(.vorschau) i path { fill: #fff; }
+  .video:has(.vorschau) small { background: rgba(31,68,48,.85); padding: 6px 10px; border-radius: 8px; left: 12px; right: auto; }
   .video small { position: absolute; bottom: 12px; left: 16px; right: 16px; font: 400 13px var(--text); opacity: .85; }
-  @media (max-width: 520px) { .video { aspect-ratio: 4 / 3; } .play { font-size: 16px; } }
+  @media (max-width: 520px) { .video { aspect-ratio: 4 / 3; } .play { font-size: 15px; gap: 10px; } .play i { width: 52px; height: 52px; } .video small { font-size: 12px; bottom: 10px; } }
 </style>
