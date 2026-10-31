@@ -31,12 +31,14 @@ const stellen = [
           fetchpriority="high"
         />
         {stellen.map((s) => (
-          <a
+          <span
             class="stelle"
-            href={s.ziel}
+            role="link"
+            tabindex="0"
+            data-ziel={s.ziel}
             style={`left:${s.x}%;top:${s.y}%;width:${s.w}%;height:${s.h}%`}
             aria-label={`${s.name}: ${s.text}`}
-          ><span>{s.text}</span></a>
+          ></span>
         ))}
       </div>
       <div class="hero__text">
@@ -96,6 +98,28 @@ const stellen = [
   <LandBand />
 </Basis>
 
+<script>
+  // Klickbare Stellen im Logo: führen direkt zur Seite, ohne Link-Anzeige des Browsers.
+  const vorgeladen = new Set<string>();
+  const vorladen = (ziel: string) => {
+    const pfad = ziel.split('#')[0];
+    if (vorgeladen.has(pfad)) return;
+    vorgeladen.add(pfad);
+    const l = document.createElement('link');
+    l.rel = 'prefetch'; l.href = pfad;
+    document.head.append(l);
+  };
+  document.querySelectorAll<HTMLElement>('.stelle[data-ziel]').forEach((el) => {
+    const ziel = el.dataset.ziel!;
+    el.addEventListener('pointerenter', () => vorladen(ziel));
+    el.addEventListener('touchstart', () => vorladen(ziel), { passive: true });
+    el.addEventListener('click', () => { window.location.href = ziel; });
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); window.location.href = ziel; }
+    });
+  });
+</script>
+
 <style>
   .hero { background: #FBFBF9; border-bottom: 1px solid #E7E2D3; }
   .hero__innen { max-width: var(--breite); margin: 0 auto; padding: 20px 20px 44px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
@@ -103,13 +127,12 @@ const stellen = [
   .logo-box img { width: 100%; height: auto; display: block; }
   /* Klickbare Stellen im Logo: ein Tipp führt sofort zur Seite. */
   .stelle { position: absolute; transform: translate(-50%, -50%); border-radius: 50%; display: block; cursor: pointer; -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; transition: background .15s, box-shadow .15s; }
-  .stelle span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); white-space: nowrap; background: var(--wald); color: #fff; font: 700 13px var(--kopf); padding: 5px 10px; border-radius: 999px; opacity: 0; transition: opacity .15s; pointer-events: none; }
-  .stelle:active { background: rgba(31, 68, 48, .16); box-shadow: 0 0 0 3px rgba(184, 134, 75, .55); }
-  .stelle:focus-visible span { opacity: 1; }
-  /* Beschriftung nur mit echter Maus. Auf dem Handy würde sie sonst den ersten Tipp abfangen. */
+  /* Keine Beschriftung, kein Link in der Statusleiste: nur ein sanftes Leuchten. */
+  .stelle { user-select: none; outline: none; }
+  .stelle:active { background: radial-gradient(closest-side, rgba(255, 250, 235, .55), rgba(255, 250, 235, 0)); }
+  .stelle:focus-visible { box-shadow: 0 0 0 3px var(--lehm); }
   @media (hover: hover) and (pointer: fine) {
-    .stelle:hover { background: rgba(31, 68, 48, .08); box-shadow: 0 0 0 2px rgba(184, 134, 75, .45); }
-    .stelle:hover span { opacity: 1; }
+    .stelle:hover { background: radial-gradient(closest-side, rgba(255, 250, 235, .45), rgba(255, 250, 235, 0)); }
   }
   .hero__text h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.04; margin-bottom: 14px; }
   .unter { margin: 0 0 10px; font-size: 19px; }
