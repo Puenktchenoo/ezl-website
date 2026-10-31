@@ -10,7 +10,6 @@ import waldSchema from '../assets/plaene/wald-schema.png';
 import acker1 from '../assets/plaene/acker-1.png';
 import acker2 from '../assets/plaene/acker-2.png';
 import acker3 from '../assets/plaene/acker-3.png';
-import holz from '../assets/holz1.jpg';
 ---
 <Basis titel="Unsere Flächen" beschreibung="Acker und Wald in Britz: 1.700 m² Acker werden zum Waldgarten, 1,5 ha Kiefernforst sollen ein essbarer Dauerwald werden. Mit Pflanzplänen, Swales und lehmigem Sand.">
   <Seitenkopf dachzeile="Britz bei Eberswalde" titel="Unsere Flächen" unter="Ein Acker und ein Stück Wald, beide auf trockenem, lehmigem Sand. Hier probieren wir aus, was wir in Büchern und Kursen gelernt haben." />
@@ -47,18 +46,12 @@ import holz from '../assets/holz1.jpg';
     </section>
 
     <section id="wald" class="block">
-      <div class="zweispaltig">
-        <div class="lese">
+      <div class="lese">
           <span class="dachzeile">Fläche 2</span>
           <h2>Der Wald: 1,5 ha Kiefernforst</h2>
           <p>In Britz Kolonie bewirtschaften wir ein Stück Wald, wie es in Brandenburg typisch ist: vor allem Kiefern, dicht gepflanzt, wenig Unterwuchs. Solche Bestände leiden unter Trockenheit und sind anfällig für Feuer und Schädlinge.</p>
           <p>Unser Ziel ist ein essbarer Dauerwald. Dafür haben wir eine Lichtung geschaffen. Die Schnittreste bleiben als Mulch und für den Bodenaufbau auf der Fläche. Aus Ästen entstehen Totholzhaufen und Benjeshecken, also locker aufgeschichtete Hecken aus Reisig, in denen Vögel, Igel und Insekten Unterschlupf finden.</p>
           <p>In die Lichtung pflanzen wir große, langlebige Nussbäume und seltene Wildobstarten: Esskastanie, Pekannuss, Herznuss, Armandskiefer und Nusskiefer, Elsbeere, Speierling, Baumhasel, Weiße Maulbeere und Amerikanischen Zürgelbaum. Am Rand folgen Sträucher und Beeren.</p>
-        </div>
-        <figure class="holz">
-          <Image src={holz} alt="Querschnitt eines frisch gefällten Kiefernstamms mit deutlichen Jahresringen" widths={[400, 700]} sizes="(max-width: 760px) 90vw, 360px" />
-          <figcaption>Kiefernholz aus der Lichtung</figcaption>
-        </figure>
       </div>
 
       <div class="plaene plaene--zwei">
@@ -120,12 +113,7 @@ import holz from '../assets/holz1.jpg';
   .plaene figure { margin: 0; }
   .plaene img { border: 1.5px solid var(--linie); }
   .hinweis-klein { font-size: 14px; color: var(--grau); margin: 10px 0 0; }
-  .zweispaltig { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 32px; align-items: start; }
-  .holz { margin-top: 60px; }
-  .holz img { aspect-ratio: 3 / 4; object-fit: cover; }
   @media (max-width: 760px) {
-    .plaene, .plaene--zwei, .zweispaltig { grid-template-columns: 1fr; }
-    .holz { margin-top: 0; }
-    .holz img { aspect-ratio: 4 / 3; }
+    .plaene, .plaene--zwei { grid-template-columns: 1fr; }
   }
 </style>

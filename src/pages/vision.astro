@@ -3,6 +3,8 @@ import Basis from '../layouts/Basis.astro';
 import Seitenkopf from '../components/Seitenkopf.astro';
 import Weiter from '../components/Weiter.astro';
 import LandBand from '../components/LandBand.astro';
+import { Image } from 'astro:assets';
+import sippe from '../assets/sippenlandschaft.jpg';
 ---
 <Basis titel="Unsere Vision" beschreibung="Wohin der EzL will: eine Sippenlandschaft aus Waldgärten, kleine Gemeinschaften, Jurten und wieder mehr Raum für Rehe, Elche und Fasane. Hektar für Hektar.">
   <Seitenkopf dachzeile="Wo wollen wir hin?" titel="Unsere Vision" unter="Ein Bild davon, wie Landschaft und Zusammenleben in ein paar Jahrzehnten aussehen könnten. Ein Ziel, kein Versprechen." />
@@ -27,6 +29,10 @@ import LandBand from '../components/LandBand.astro';
         <p>Wir stellen uns eine offene, lichte Landschaft vor: Waldgärten, Baumgruppen, Hecken und Lichtungen, ein bisschen wie eine Savanne mit Nussbäumen. Darin leben kleine Gemeinschaften, die wir Sippen nennen, jeweils mit ihren eigenen Flächen und eng mit den Nachbarn verbunden.</p>
         <p>Die Idee dahinter: Allein von und mit dem Land zu leben ist schwer. Wenn sich aber mehrere Menschen die Arbeit teilen, ihre Fähigkeiten zusammenlegen und sich gegenseitig aushelfen, wird es leichter und schöner. Grundnahrung kommt dann vor allem von langlebigen Bäumen wie Esskastanie und Walnuss, die einmal gepflanzt viele Jahrzehnte tragen können.</p>
       </div>
+      <figure class="sippe">
+        <Image src={sippe} alt="Gemalte Szene einer Gemeinschaft im Waldgarten: Jurten und Lehmhäuser mit Gründach, Menschen kochen am Feuer, machen Musik und tragen Körbe mit Ernte, Kinder spielen, im Hintergrund ein Fluss und Wald." widths={[640, 1024, 1408]} sizes="(max-width: 1080px) 100vw, 1000px" />
+        <figcaption>So könnte gemeinsames Leben in einer Sippenlandschaft eines Tages aussehen. Eine Illustration, kein Foto.</figcaption>
+      </figure>
     </section>
 
     <section id="zusammenschaft" class="abschnitt">
@@ -73,6 +79,8 @@ import LandBand from '../components/LandBand.astro';
 </Basis>
 
 <style>
+  .sippe { margin: 28px 0 8px; }
+  .sippe img { border-radius: var(--rund); }
   .bild-vision { margin-top: 40px; border-radius: var(--rund); overflow: hidden; }
   .bild-vision svg { display: block; width: 100%; height: 200px; }
   .abschnitt { padding-top: 8px; }
